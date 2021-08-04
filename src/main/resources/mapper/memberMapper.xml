@@ -4,13 +4,23 @@
 
 <mapper namespace="springboot.sm.mapper.MemberMapper"> <!-- DP_인터페이스를 묶어줘야 함 경로 알려주는 것 -->
 
-    <insert id="memberSave" parameterType="Member">
-        insert into members values(#{loginId},#{password},#{name})
-    </insert> <!-- DP_ id에다가 memberSave를 똑같이 넣어줘야 함 insert는 데이터를 넣는것이니 저장하기위해서 사용 즉 memberSave
-     id는 Mapper랑 같아야 함 -->
+<!-- 회원가입 로그인 시작-->
 
-    <select id="findById" parameterType="LoginForm" resultType="LoginForm">
-        select loginId, password from member where loginId=#{loginId}
+    <select id="findAll" resultType="Member">
+        select * from members
     </select>
 
+    <insert id="memberSave" parameterType="Member">
+        insert into members values(#{loginId},#{password},#{name})
+    </insert> <!-- DP_ id에다가 memberSave를 똑같이 넣어줘야 함 insert는 데이터를 넣는것이니 저장하기위해서 사용 즉 memberSave id는 Mapper랑 같아야 함 -->
+
+    <select id="findByLoginId" parameterType="String" resultType="Member">
+        select * from members where loginId=#{loginId}
+    </select>
+
+    <select id="login" parameterType="String" resultType="Member">
+        select * from members where password=#{password}
+    </select>
+
+<!-- 회원가입 로그인 끝-->
 </mapper>
