@@ -1,4 +1,4 @@
-package springboot.sm.domain;
+package springboot.sm.domain.loginform;
 
 import lombok.Data;
 
