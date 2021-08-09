@@ -11,3 +11,6 @@ spring:
     password: 1234
     url: jdbc:mysql://localhost:3306/sm?useSSL=false
     username: root
+
+file:
+  dir: C:/upload-test-folder/
