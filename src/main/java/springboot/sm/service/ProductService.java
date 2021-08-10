@@ -2,9 +2,13 @@ package springboot.sm.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import springboot.sm.domain.GetProduct;
+import springboot.sm.domain.productform.GetProduct;
 import springboot.sm.domain.Product;
+import springboot.sm.domain.UploadFile;
 import springboot.sm.mapper.ProductMapper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -12,17 +16,32 @@ public class ProductService {
     @Autowired
     private ProductMapper productMapper;
 
-    void addProduct(Product product){
+    public void addProduct(Product product){
         GetProduct getProduct = new GetProduct();
         getProduct.setProductId(product.getProductId());
-        getProduct.setUploadImageName(product.getProductImage().getUploadFileName());
-        getProduct.setStoreImageName(product.getProductImage().getStoreFileName());
+        getProduct.setUploadImageName(product.getProductImage().getUploadImageName());
+        getProduct.setStoreImageName(product.getProductImage().getStoreImageName());
         getProduct.setProductName(product.getProductName());
         getProduct.setProductContents(product.getProductContents());
-        getProduct.setSize(product.getSize());
-        getProduct.setColor(product.getColor());
         getProduct.setPrice(product.getPrice());
         getProduct.setQuantity(product.getQuantity());
         productMapper.addProduct(getProduct);
     }
+
+    public List<Product> products(){
+        List<Product> convertProduct = new ArrayList<>();
+        List<GetProduct> productAll = productMapper.findProductAll();
+        for (GetProduct getProduct : productAll) {
+            Product product = new Product();
+            product.setProductId(getProduct.getProductId());
+            product.setProductImage(new UploadFile(getProduct.getUploadImageName(), getProduct.getStoreImageName()));
+            product.setProductName(getProduct.getProductName());
+            product.setPrice(getProduct.getPrice());
+            product.setQuantity(getProduct.getQuantity());
+            product.setProductContents(product.getProductContents());
+            convertProduct.add(product);
+        }
+        return convertProduct;
+    }
+
 }

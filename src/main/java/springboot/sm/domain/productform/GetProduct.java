@@ -1,4 +1,4 @@
-package springboot.sm.domain;
+package springboot.sm.domain.productform;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,8 +14,6 @@ public class GetProduct {
     private String storeImageName;
     private String productName;
     private String productContents;
-    private int size;
-    private String color;
     private int price;
     private int quantity;
 }

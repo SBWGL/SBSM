@@ -1,19 +1,19 @@
-package springboot.sm.domain;
+package springboot.sm.domain.productform;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+@NoArgsConstructor
+public class ProductSaveForm {
 
     private int productId;
-    private UploadFile productImage;
+    private MultipartFile productImage;
     private String productName;
     private String productContents;
     private int price;
     private int quantity;
-
 }

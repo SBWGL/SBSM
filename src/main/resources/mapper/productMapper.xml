@@ -4,8 +4,12 @@
 
 <mapper namespace="springboot.sm.mapper.ProductMapper">
 
-    <insert id="addProduct" parameterType="Product">
-        insert into products values(productId,#{uploadImageName},#{storeImageName},#{productName},#{productContents},#{size},#{color},#{price},#{quantity})
+    <insert id="addProduct" parameterType="GetProduct">
+        insert into products values(productId,#{uploadImageName},#{storeImageName},#{productName},#{productContents},#{price},#{quantity})
     </insert>
+
+    <select id="findProductAll" resultType="GetProduct">
+        select * from products
+    </select>
 
 </mapper>

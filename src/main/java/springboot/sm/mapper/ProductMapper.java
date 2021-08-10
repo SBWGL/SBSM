@@ -2,8 +2,7 @@ package springboot.sm.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-import springboot.sm.domain.GetProduct;
-import springboot.sm.domain.Product;
+import springboot.sm.domain.productform.GetProduct;
 
 import java.util.List;
 
@@ -11,6 +10,6 @@ import java.util.List;
 @Repository
 public interface ProductMapper {
 
-    List<Product> findProductAll();
+    List<GetProduct> findProductAll();
     void addProduct(GetProduct getProduct);
 }
