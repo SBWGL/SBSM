@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import springboot.sm.domain.loginform.LoginForm;
 import springboot.sm.domain.Member;
 import springboot.sm.service.MemberService;
+import springboot.sm.web.SessionConst;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,12 +24,12 @@ import javax.servlet.http.HttpSession;
 public class MemberController {
 
     @Autowired
-    MemberService memberService; /** DP_ @Autowired로 의존성 주입 즉 memberService 변수 안에 객체를 상황에 따라 변경가능 **/
+    MemberService memberService;
 
-    @GetMapping("/") /** DP_ url로 "/" 가 들어오면 즉 요청 받으면 resources/templates/welcome.html page 리턴 **/
-    public String home() {
-        return "welcome";
-    }
+    /**
+     * DP_ @Autowired로 의존성 주입 즉 memberService 변수 안에 객체를 상황에 따라 변경가능
+     **/
+
 
     @GetMapping("/login")
     public String loginForm(@ModelAttribute LoginForm loginForm) {
@@ -39,20 +40,31 @@ public class MemberController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute LoginForm loginform, BindingResult bindingResult,
-                      @RequestParam(defaultValue = "/") String redirectUrl,HttpServletRequest httpServletRequest){
-        if (bindingResult.hasErrors()) return "members/loginForm";
-        Member loginMember = memberService.login(loginform.getLoginId(), loginform.getPassword());
-        log.info("loginMember={}",loginMember);
-        if (loginMember == null){
-            bindingResult.reject("loginFail","loginId OR password ERROR");
+                        @RequestParam(defaultValue = "/") String redirectUrl, HttpServletRequest httpServletRequest) {
+        /** DP_ HttpServletResponse는 쿠키 할 때 필요 **/
+        if (bindingResult.hasErrors()) {
             return "members/loginForm";
         }
-//        HttpSession session = httpServletRequest.getSession();
-//        session.setAttribute(SessionConst.LOGIN_MEMBER,loginMember);
+
+        Member loginMember = memberService.login(loginform.getLoginId(), loginform.getPassword());
+
+        if (loginMember == null) {
+            bindingResult.reject("loginFail", "loginId OR password ERROR");
+            return "members/loginForm";
+        } /** DP_ 아이디, 비밀번호 오류일 때 예외상황 **/
+
+        //세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
+        HttpSession session = httpServletRequest.getSession(true);
+        //세션에 로그인 회원 정보 보관
+        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 //        session.setAttribute(SessionConst.WRITER,form.getLoginId());
-        return "redirect:"+redirectUrl;
+
+        return "redirect:" + redirectUrl;
     }
-    /** DP_ DB 필드와 변수이름 맞추는게 안전 (오류난적이씀 ㅠㅠ) **/
+
+    /**
+     * DP_ DB 필드와 변수이름 맞추는게 안전 (오류난적이씀 ㅠㅠ)
+     **/
 
     @GetMapping("/signUp")
     public String signUpForm(@ModelAttribute Member member) {
@@ -70,5 +82,12 @@ public class MemberController {
         return "redirect:/";
     }
 
-
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return "redirect:/";
+    }
 }

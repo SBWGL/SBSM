@@ -1,5 +1,9 @@
 server :
   port : 8912
+  servlet:
+    session:
+      tracking-modes: cookie
+      timeout: 60
 
 mybatis:
   mapper-locations: classpath*:mapper/*Mapper.xml
@@ -14,3 +18,4 @@ spring:
 
 file:
   dir: C:/upload-test-folder/
+
