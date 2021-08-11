@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import springboot.sm.domain.common.Criteria;
+import springboot.sm.domain.common.PageMake;
 import springboot.sm.domain.productform.ProductSaveForm;
 import springboot.sm.domain.Product;
-import springboot.sm.domain.UploadFile;
+import springboot.sm.domain.common.UploadFile;
 import springboot.sm.file.FileStore;
 import springboot.sm.service.ProductService;
 
@@ -28,9 +30,16 @@ public class ProductController {
     FileStore fileStore;
 
     @GetMapping("/products")
-    public String products(Model model){
-        List<Product> products = productService.products();
-        model.addAttribute("products",products);
+    public String products(Model model, Criteria cri){
+//        List<Product> products = productService.products();
+        List<Product> listPaging = productService.getListPaging(cri);// 페이징된 상품 전체 가져오기
+        model.addAttribute("products",listPaging);
+        int total = productService.getTotal();
+        PageMake pageMake = new PageMake(cri,total);
+        model.addAttribute("pageMake",pageMake);
+        log.info("pageMake={}",pageMake);
+        log.info("pageMakeStartPage={}",pageMake.getStartPage());
+        log.info("pageMakeEndPage={}",pageMake.getEndPage());
         return "products/products";
     }
 
@@ -57,15 +66,14 @@ public class ProductController {
         product.setProductImage(imageFile);
         product.setPrice(form.getPrice());
         product.setQuantity(form.getQuantity());
-        log.info("product={}",product);
         productService.addProduct(product);
         return "redirect:/products";
     }
 
+    // 이미지 경로 가져오기
     @ResponseBody
     @GetMapping("/images/{filename}")
     public Resource getImage(@PathVariable String filename) throws MalformedURLException {
-        log.info("filename={}",filename);
         UrlResource resource = new UrlResource("file:///" + fileStore.getFullPath(filename));
         return resource;
     }

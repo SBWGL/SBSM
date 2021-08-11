@@ -3,6 +3,7 @@ package springboot.sm.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import springboot.sm.domain.common.UploadFile;
 
 @Data
 @NoArgsConstructor

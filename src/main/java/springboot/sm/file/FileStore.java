@@ -3,7 +3,7 @@ package springboot.sm.file;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import springboot.sm.domain.UploadFile;
+import springboot.sm.domain.common.UploadFile;
 
 import java.io.File;
 import java.io.IOException;

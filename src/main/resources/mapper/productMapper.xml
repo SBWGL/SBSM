@@ -3,23 +3,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="springboot.sm.mapper.ProductMapper">
-
+<!--상품 추가하기-->
     <insert id="addProduct" parameterType="GetProduct">
         insert into products values(productId,#{uploadImageName},#{storeImageName},#{productName},#{productContents},#{price},#{quantity})
     </insert>
-
+<!--상품 모두 보기-->
     <select id="findProductAll" resultType="GetProduct">
         select * from products
     </select>
-
+<!--상품 상세보기-->
     <select id="findProduct" resultType="GetProduct" parameterType="int">
         select * from products where productId=#{productId}
     </select>
-
+<!--이미지 가져오기-->
     <select id="findImage" resultType="UploadFile">
         select uploadImageName, storeImageName from products where productId=#{productId}
     </select>
-
+<!--업데이트 -->
     <update id="updateProduct" parameterType="GetProduct">
         update products set
         uploadImageName=#{uploadImageName},
@@ -30,5 +30,15 @@
         quantity=#{quantity}
         where productId=#{productId}
     </update>
-
+<!--페이징 -->
+    <select id="getListPaging" resultType="GetProduct">
+        select * from (select productId, uploadImageName, storeImageName, productName, productContents, price, quantity
+        from products
+        order by productId desc) as T1
+        limit #{skip}, #{amount}
+    </select>
+<!--개시물 총 개수-->
+    <select id="getTotal" resultType="int">
+        select count(*) from products
+    </select>
 </mapper>
