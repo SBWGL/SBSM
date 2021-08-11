@@ -2,6 +2,7 @@ package springboot.sm.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+import springboot.sm.domain.UploadFile;
 import springboot.sm.domain.productform.GetProduct;
 
 import java.util.List;
@@ -12,4 +13,7 @@ public interface ProductMapper {
 
     List<GetProduct> findProductAll();
     void addProduct(GetProduct getProduct);
+    GetProduct findProduct(int productId);
+    UploadFile findImage(int idx);
+    void updateProduct(GetProduct product);
 }

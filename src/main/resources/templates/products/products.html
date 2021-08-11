@@ -34,6 +34,12 @@
                         </li>
                     </ul>
                     <form class="d-flex">
+                        <button class="btn btn-outline-dark" th:onclick="|location.href='@{/addProduct}'|" type="button">
+                            <i class="bi-cart-fill me-1"></i>
+                            RegisterProduct
+                        </button>
+                    </form>
+                    <form class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
@@ -61,13 +67,13 @@
                         <div class="card h-100">
                             <!-- Sale badge-->
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" th:src="|/images/${product.productImage.getStoreImageName()}|" />
+                            <!-- Product image--><!--th:src="|/images/${product.productImage.getStoreImageName()}|"-->
+                            <img class="card-img-top" th:onclick="|location.href='@{|/product/${product.productId}|}'|" th:src="|/images/${product.productImage.getStoreImageName()}|" width="250px" height="250px" />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder" th:text="${product.productName}">Special Item</h5>
+                                    <h5><a th:href="@{|/product/${product.productId}|}" class="fw-bolder" th:text="${product.productName}"></a></h5>
                                     <!-- Product reviews-->
                                     <div class="d-flex justify-content-center small text-warning mb-2">
                                         <div class="bi-star-fill"></div>

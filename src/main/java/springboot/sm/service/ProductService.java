@@ -17,6 +17,16 @@ public class ProductService {
     private ProductMapper productMapper;
 
     public void addProduct(Product product){
+        GetProduct getProduct = inputBoardData(product);
+        productMapper.addProduct(getProduct);
+    }
+
+    public void updateProduct(Product product){
+        GetProduct getProduct = inputBoardData(product);
+        productMapper.updateProduct(getProduct);
+    }
+
+    public GetProduct inputBoardData(Product product){
         GetProduct getProduct = new GetProduct();
         getProduct.setProductId(product.getProductId());
         getProduct.setUploadImageName(product.getProductImage().getUploadImageName());
@@ -25,7 +35,7 @@ public class ProductService {
         getProduct.setProductContents(product.getProductContents());
         getProduct.setPrice(product.getPrice());
         getProduct.setQuantity(product.getQuantity());
-        productMapper.addProduct(getProduct);
+        return getProduct;
     }
 
     public List<Product> products(){
@@ -42,6 +52,22 @@ public class ProductService {
             convertProduct.add(product);
         }
         return convertProduct;
+    }
+
+    public Product findProduct(int productId){
+        GetProduct product = productMapper.findProduct(productId);
+        Product findProduct = new Product();
+        findProduct.setProductId(product.getProductId());
+        findProduct.setProductName(product.getProductName());
+        findProduct.setProductContents(product.getProductContents());
+        findProduct.setPrice(product.getPrice());
+        findProduct.setQuantity(product.getQuantity());
+        findProduct.setProductImage(new UploadFile(product.getUploadImageName(),product.getStoreImageName()));
+        return findProduct;
+    }
+
+    public UploadFile findImage(int idx){
+        return productMapper.findImage(idx);
     }
 
 }

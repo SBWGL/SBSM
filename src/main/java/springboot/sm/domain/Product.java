@@ -12,6 +12,7 @@ public class Product {
     private int productId;
     private UploadFile productImage;
     private String productName;
+
     private String productContents;
     private int price;
     private int quantity;

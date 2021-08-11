@@ -12,4 +12,23 @@
         select * from products
     </select>
 
+    <select id="findProduct" resultType="GetProduct" parameterType="int">
+        select * from products where productId=#{productId}
+    </select>
+
+    <select id="findImage" resultType="UploadFile">
+        select uploadImageName, storeImageName from products where productId=#{productId}
+    </select>
+
+    <update id="updateProduct" parameterType="GetProduct">
+        update products set
+        uploadImageName=#{uploadImageName},
+        storeImageName=#{storeImageName},
+        productName=#{productName},
+        productContents=#{productContents},
+        price=#{price},
+        quantity=#{quantity}
+        where productId=#{productId}
+    </update>
+
 </mapper>
