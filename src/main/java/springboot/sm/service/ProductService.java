@@ -1,5 +1,6 @@
 package springboot.sm.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springboot.sm.domain.common.Criteria;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
 public class ProductService {
 
     @Autowired
@@ -62,8 +64,8 @@ public class ProductService {
             product.setProductName(getProduct.getProductName());
             product.setPrice(getProduct.getPrice());
             product.setQuantity(getProduct.getQuantity());
-            product.setProductContents(product.getProductContents());
-            product.setCategory(product.getCategory());
+            product.setProductContents(getProduct.getProductContents());
+            product.setCategory(getProduct.getCategory());
             convertProduct.add(product);
         }
         return convertProduct;
