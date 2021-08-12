@@ -5,7 +5,7 @@
 <mapper namespace="springboot.sm.mapper.ProductMapper">
 <!--상품 추가하기-->
     <insert id="addProduct" parameterType="GetProduct">
-        insert into products values(productId,#{uploadImageName},#{storeImageName},#{productName},#{productContents},#{price},#{quantity})
+        insert into products values(productId,#{uploadImageName},#{storeImageName},#{productName},#{productContents},#{price},#{quantity},#{category})
     </insert>
 <!--상품 모두 보기-->
     <select id="findProductAll" resultType="GetProduct">
@@ -27,18 +27,20 @@
         productName=#{productName},
         productContents=#{productContents},
         price=#{price},
-        quantity=#{quantity}
+        quantity=#{quantity},
+        category=#{category}
         where productId=#{productId}
     </update>
 <!--페이징 -->
     <select id="getListPaging" resultType="GetProduct">
-        select * from (select productId, uploadImageName, storeImageName, productName, productContents, price, quantity
+        select * from (select productId, uploadImageName, storeImageName, productName, productContents, price, quantity, category
         from products
+        where category=#{category}
         order by productId desc) as T1
-        limit #{skip}, #{amount}
+        limit #{cri.skip}, #{cri.amount}
     </select>
 <!--개시물 총 개수-->
-    <select id="getTotal" resultType="int">
-        select count(*) from products
+    <select id="getTotal" resultType="int" parameterType="String">
+        select count(*) from products where category=#{category}
     </select>
 </mapper>
