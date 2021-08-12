@@ -37,9 +37,6 @@ public class ProductController {
         int total = productService.getTotal();
         PageMake pageMake = new PageMake(cri,total);
         model.addAttribute("pageMake",pageMake);
-        log.info("pageMake={}",pageMake);
-        log.info("pageMakeStartPage={}",pageMake.getStartPage());
-        log.info("pageMakeEndPage={}",pageMake.getEndPage());
         return "products/products";
     }
 
