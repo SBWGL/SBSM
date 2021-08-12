@@ -37,26 +37,58 @@
     <link   th:href="@{/css/product.css}"
             href="product.css" rel="stylesheet">
   </head>
-  <body>
+<body>
+
+  <!-- 대표 -->
+  <div>
+    <div>
+      <div>
+        <span class="py-2" href="#" aria-label="Product">
+          <svg xmlns="http://www.w3.org/2000/svg"
+               width="50" height="50" fill="none" stroke="currentColor"
+               stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+               class="py-2 d-none d-md-inline-block"
+               role="img" viewBox="0 0 24 24"><title>Product</title>
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/>
+          </svg>
+        </span>
+        <span class="py-2 d-none d-md-inline-block"
+           style="margin-left: 1250px; color: #000;"
+           th:onclick="|location.href='@{/login}'|"
+           href="#">Login</span>
+        <span class="py-2 d-none d-md-inline-block"
+           style="margin-left: 5px; color: #000;"
+           th:onclick="|location.href='@{/signUp}'|"
+           href="#">Sign up</span>
+      </div>
+    </div>
+  </div>
+  <!-- 대표 -->
     
 <header class="site-header sticky-top py-1">
   <nav class="container d-flex flex-column flex-md-row justify-content-between">
-    <a class="py-2" href="#" aria-label="Product">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
-    </a>
-    <!-- <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Cart</a> DP_ 일단 막아놓은 부분 -->
-    <a class="py-2 d-none d-md-inline-block"
-       th:onclick="|location.href='@{/login}'|"
-       href="#">Login</a>
-    <a class="py-2 d-none d-md-inline-block"
-       th:onclick="|location.href='@{/signUp}'|"
-       href="#">Sign up</a>
+    <span class="py-2 d-none d-md-inline-block"
+          style="color: #000;"
+          href="#">OUTER</span>
+    <span class="py-2 d-none d-md-inline-block"
+          style="color: #000;"
+          href="#">TOP</span>
+    <span class="py-2 d-none d-md-inline-block"
+          style="color: #000;"
+          href="#">KINT</span>
+    <span class="py-2 d-none d-md-inline-block"
+          style="color: #000;"
+          href="#">SHIRT</span>
+    <span class="py-2 d-none d-md-inline-block"
+          style="color: #000;"
+          href="#">PANTS</span>
+    <span class="py-2 d-none d-md-inline-block"
+          style="color: #000;"
+          href="#">SHOES</span>
+    <span class="py-2 d-none d-md-inline-block"
+          style="color: #000;"
+          href="#">ACC</span>
   </nav>
 </header>
 
