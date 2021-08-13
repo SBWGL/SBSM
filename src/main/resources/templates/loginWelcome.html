@@ -60,12 +60,15 @@
     </div>
 </div>
 
-<header class="site-header sticky-top py-1">
-    <nav class="container d-flex flex-column flex-md-row justify-content-between">
-        <span class="py-2 d-none d-md-inline-block"
-              style="color: #000;"
-              th:onclick="|location.href='@{/products/OUTER}'|"
-              th:text="OUTER"></span>
+<header class="site-header sticky-top py-1" style="background-color: #FFFFFF; border-width: 0px 0px 2px 0px; border-style: solid; border-color: black">
+    <nav class="container d-flex flex-column flex-md-row justify-content-between navbar navbar-light">
+        <div>
+      <span class="py-2 d-none d-md-inline-block"
+            style="color: #000;"
+            th:onclick="|location.href='@{/products/OUTER}'|"
+            th:text="OUTER">
+      </span>
+        </div>
         <span class="py-2 d-none d-md-inline-block"
               style="color: #000;"
               th:onclick="|location.href='@{/products/TOP}'|"
