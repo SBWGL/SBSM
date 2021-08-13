@@ -37,7 +37,7 @@ public class MemberController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute LoginForm loginform, BindingResult bindingResult,
-                        @RequestParam(defaultValue = "/") String redirectUrl, HttpServletRequest httpServletRequest) {
+                        @RequestParam(defaultValue = "/") String redirectURL, HttpServletRequest httpServletRequest) {
         /** DP_ HttpServletResponse는 쿠키 할 때 필요 **/
         if (bindingResult.hasErrors()) {
             return "members/loginForm";
@@ -55,8 +55,7 @@ public class MemberController {
         //세션에 로그인 회원 정보 보관
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 //        session.setAttribute(SessionConst.WRITER,form.getLoginId());
-
-        return "redirect:" + redirectUrl;
+        return "redirect:" + redirectURL;
     }
 
     /**
