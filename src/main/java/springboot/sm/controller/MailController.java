@@ -45,17 +45,17 @@ public class MailController {
         //보낼 이메일의 내용
 
         /** 이메일 전송을 위한 코드 **/
-        try {
-            MimeMessage message = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-            helper.setFrom(setFrom);
-            helper.setTo(toMail);
-            helper.setSubject(title);
-            helper.setText(content,true);
-            mailSender.send(message);
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            MimeMessage message = mailSender.createMimeMessage();
+//            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+//            helper.setFrom(setFrom);
+//            helper.setTo(toMail);
+//            helper.setSubject(title);
+//            helper.setText(content,true);
+//            mailSender.send(message);
+//        }catch(Exception e) {
+//            e.printStackTrace();
+//        }
 
         String num = Integer.toString(checkNum);
         return num;

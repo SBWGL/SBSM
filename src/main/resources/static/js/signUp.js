@@ -53,3 +53,6 @@ $(".mailCheckInput").blur(function(){
         checkResult.attr("class", "incorrect");
     }
 });
+
+
+

@@ -11,7 +11,7 @@
     </select>
 
     <insert id="memberSave" parameterType="Member">
-        insert into members values(#{loginId},#{password},#{name},#{email})
+        insert into members values(#{loginId},#{password},#{name},#{email},#{postcode},#{address},#{detailAddress})
     </insert> <!-- DP_ id에다가 memberSave를 똑같이 넣어줘야 함 insert는 데이터를 넣는것이니 저장하기위해서 사용 즉 memberSave id는 Mapper랑 같아야 함 -->
 
     <select id="findByLoginId" parameterType="String" resultType="Member">
