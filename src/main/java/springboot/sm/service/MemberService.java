@@ -36,4 +36,8 @@ public class MemberService {
     public Member login(String loginId, String password) {
         return memberMapper.findByLoginId(loginId).filter(m -> m.getPassword().equals(password)).orElse(null);
     }
+
+    public int idCheck(String loginId) {
+        return memberMapper.idCheck(loginId);
+    }
 }
