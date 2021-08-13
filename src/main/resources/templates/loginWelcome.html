@@ -51,6 +51,11 @@
             <circle cx="12" cy="12" r="10"/>
             <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/>
           </svg>
+        </span>
+            <span class="py-2 d-none d-md-inline-block"
+                  style="margin-left: 1250px; color: #000;"
+                  th:onclick="|location.href='@{/logout}'|"
+                  href="#">logout</span>
         </div>
     </div>
 </div>
@@ -59,36 +64,32 @@
     <nav class="container d-flex flex-column flex-md-row justify-content-between">
         <span class="py-2 d-none d-md-inline-block"
               style="color: #000;"
-              th:onclick="|location.href='@{/logout}'|"
-              href="#">logout</span>
-        <span class="py-2 d-none d-md-inline-block"
-                style="color: #000;"
-                th:onclick="|location.href='@{/#}'|"
-                href="#">OUTER</span>
+              th:onclick="|location.href='@{/products/OUTER}'|"
+              th:text="OUTER"></span>
         <span class="py-2 d-none d-md-inline-block"
               style="color: #000;"
-              th:onclick="|location.href='@{/#}'|"
-              href="#">TOP</span>
+              th:onclick="|location.href='@{/products/TOP}'|"
+              th:text="TOP"></span>
         <span class="py-2 d-none d-md-inline-block"
               style="color: #000;"
-              th:onclick="|location.href='@{/#}'|"
-              href="#">KINT</span>
+              th:onclick="|location.href='@{/products/KINT}'|"
+              th:text="KINT"></span>
         <span class="py-2 d-none d-md-inline-block"
               style="color: #000;"
-              th:onclick="|location.href='@{/#}'|"
-              href="#">SHIRT</span>
+              th:onclick="|location.href='@{/products/SHIRT}'|"
+              th:text="SHIRT"></span>
         <span class="py-2 d-none d-md-inline-block"
               style="color: #000;"
-              th:onclick="|location.href='@{/#}'|"
-              href="#">PANTS</span>
+              th:onclick="|location.href='@{/products/PANTS}'|"
+              th:text="PANTS"></span>
         <span class="py-2 d-none d-md-inline-block"
               style="color: #000;"
-              th:onclick="|location.href='@{/#}'|"
-              href="#">SHOES</span>
+              th:onclick="|location.href='@{/products/SHOES}'|"
+              th:text="SHOES"></span>
         <span class="py-2 d-none d-md-inline-block"
               style="color: #000;"
-              th:onclick="|location.href='@{/#}'|"
-              href="#">ACC</span>
+              th:onclick="|location.href='@{/products/ACC}'|"
+              th:text="ACC"></span>
     </nav>
 </header>
 
