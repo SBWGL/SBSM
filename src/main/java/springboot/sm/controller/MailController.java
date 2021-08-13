@@ -33,7 +33,7 @@ public class MailController {
         log.info(""+checkNum);
 
         /** 이메일 보내기 **/
-        String setFrom = "Kongrpt@gmail.com"; //보내는 이메일(yml에서 넣은 이메일과 동일)
+        String setFrom = "hi@gmail.com"; //보내는 이메일(yml에서 넣은 이메일과 동일)
         String toMail = email; //수신받을 이메일 (signUpForm에서 입력하는 이메일)
         String title = "회원가입 인증 이메일 입니다."; //보낼 메일의 제목
         String content =

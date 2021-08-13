@@ -18,8 +18,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: Kongrpt@gmail.com
-    password: zx3205021!ZX
+    username: username
+    password: password
     properties:
       mail:
         smtp:
