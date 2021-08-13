@@ -19,4 +19,7 @@ public interface MemberMapper {
     List<Member> findAll();
     Optional<Member> findByLoginId(String loginId);
     Member login(String loginId, String password);
+    int idCheck(String loginId);
+
+    /** public 생략 ? 대표 **/
 }

@@ -5,10 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import springboot.sm.domain.loginform.LoginForm;
 import springboot.sm.domain.Member;
 import springboot.sm.service.MemberService;
@@ -89,5 +86,16 @@ public class MemberController {
             session.invalidate();
         }
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/memberIdCheck", method = RequestMethod.POST)
+    @ResponseBody
+    public String memberIdChk(String memberId) throws Exception{
+        int result = memberService.idCheck(memberId);
+        if(result != 0) {
+            return "fail";	// 중복 아이디가 존재
+        } else {
+            return "success";	// 중복 아이디 x
+        }
     }
 }

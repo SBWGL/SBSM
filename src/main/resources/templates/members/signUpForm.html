@@ -4,15 +4,43 @@
     <meta charset="utf-8">
     <link th:href="@{/css/bootstrap.min.css}"
           href="../css/bootstrap.min.css" rel="stylesheet">
-    <style>
-     .container {
+<style>
+    .container {
         max-width: 560px;
-     }
-     .field-error {
+    }
+    .field-error {
         border-color: #dc3545;
         color: #dc3545;
-     }
-    </style>
+    }
+
+    .possibleId{
+        color : green;
+        display : none;
+    }
+    .existId{
+        color : red;
+        display : none;
+    }
+
+    #mailCheckInputFalse{
+        background-color:#ebebe4;
+    }
+
+    #mailCheckInputTrue{
+        background-color:white;
+    }
+
+    .correct{
+        color : green;
+    }
+    .incorrect{
+        color : red;
+    }
+
+
+</style>
+
+
 </head>
 <body>
 <div class="container">
@@ -32,6 +60,8 @@
                 <input type="text" id="loginId" th:field="*{loginId}" class="form-control"
                        th:errorclass="field-error"> <!-- DP_ * form에서 member를 object로 받고 그 안에 있는 .loginId를 받음 -->
                 <div class="field-error" th:errors="*{loginId}"/>
+                <span class="possibleId">사용 가능한 아이디입니다.</span>
+                <span class="existId">아이디가 이미 존재합니다.</span>
             </div>
         </div>
         <div>
@@ -45,6 +75,23 @@
             <input type="text" id="name" th:field="*{name}" class="form-control"
                    th:errorclass="field-error">
             <div class="field-error" th:errors="*{name}"/>
+        </div>
+        <div>
+            <label for="email">이메일</label>
+            <input type="text" id="email" th:field="*{email}"
+                   class="form-control"
+                   th:errorclass="field-error">
+            <div class="field-error" th:errors="*{email}"/>
+            <div class="mailCheck">
+                <div class="mailCheckInputBox" id="mailCheckInputFalse" style="width: 180px; display: inline-block;">
+                    <input class="mailCheckInput" disabled="disabled">
+                </div>
+                <div class="mailCheckButton" style="width: 180px; display: inline-block;" >
+                    <span>인증번호 발송</span>
+                </div>
+                <div class="clearfix"></div>
+                <span id="codeWar"></span>
+            </div>
         </div>
 
         <hr class="my-4">
@@ -60,5 +107,8 @@
         </div>
     </form>
 </div> <!-- /container -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script tpye="text/javascript" src="/js/signUp.js"></script>
 </body>
 </html>

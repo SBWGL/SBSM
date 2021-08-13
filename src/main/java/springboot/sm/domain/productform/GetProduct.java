@@ -16,4 +16,5 @@ public class GetProduct {
     private String productContents;
     private int price;
     private int quantity;
+    private String category;
 }
