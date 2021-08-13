@@ -24,6 +24,19 @@
 
     <form action="products.html" th:action th:object="${product}" enctype="multipart/form-data" method="post">
 
+        <div class="form-control">
+            <label th:text="#{label.product.category}">카테고리</label>
+            <select th:name="selected">
+                <option value="선택">선택</option>
+                <option value="OUTER">OUTER</option>
+                <option value="TOP">TOP</option>
+                <option value="KINT">KINT</option>
+                <option value="SHIRT">SHIRT</option>
+                <option value="PANTS">PANTS</option>
+                <option value="SHOES">SHOES</option>
+            </select>
+        </div>
+
         <div>
             <label for="imageFile" th:text="#{label.product.productImage}">이미지</label>
             <input type="file" id="imageFile" th:field="*{productImage}" class="form-control" placeholder="이미지를 넣으세요">

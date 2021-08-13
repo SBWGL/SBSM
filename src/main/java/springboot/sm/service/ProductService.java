@@ -1,5 +1,6 @@
 package springboot.sm.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springboot.sm.domain.common.Criteria;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
 public class ProductService {
 
     @Autowired
@@ -38,6 +40,7 @@ public class ProductService {
         getProduct.setProductContents(product.getProductContents());
         getProduct.setPrice(product.getPrice());
         getProduct.setQuantity(product.getQuantity());
+        getProduct.setCategory(product.getCategory());
         return getProduct;
     }
 //    상품 전체가져오기
@@ -46,8 +49,8 @@ public class ProductService {
         return inputProductListData(productAll);
     }
 //    페이징
-    public List<Product> getListPaging(Criteria cri){
-        List<GetProduct> listPaging = productMapper.getListPaging(cri);
+    public List<Product> getListPaging(Criteria cri, String category){
+        List<GetProduct> listPaging = productMapper.getListPaging(cri,category);
         return inputProductListData(listPaging);
     }
 
@@ -61,7 +64,8 @@ public class ProductService {
             product.setProductName(getProduct.getProductName());
             product.setPrice(getProduct.getPrice());
             product.setQuantity(getProduct.getQuantity());
-            product.setProductContents(product.getProductContents());
+            product.setProductContents(getProduct.getProductContents());
+            product.setCategory(getProduct.getCategory());
             convertProduct.add(product);
         }
         return convertProduct;
@@ -76,6 +80,7 @@ public class ProductService {
         findProduct.setProductContents(product.getProductContents());
         findProduct.setPrice(product.getPrice());
         findProduct.setQuantity(product.getQuantity());
+        findProduct.setCategory(product.getCategory());
         findProduct.setProductImage(new UploadFile(product.getUploadImageName(),product.getStoreImageName()));
         return findProduct;
     }
@@ -86,8 +91,8 @@ public class ProductService {
     }
 
 //    게시물 개수
-    public int getTotal(){
-        return productMapper.getTotal();
+    public int getTotal(String category){
+        return productMapper.getTotal(category);
     }
 
 }

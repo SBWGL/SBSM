@@ -52,6 +52,7 @@
                     <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" th:src="|/images/${product.productImage.getStoreImageName()}|" width="480px" height="560px" /></div>
                     <div class="col-md-6">
                         <div class="small mb-1" th:text="${product.productId}">SKU: BST-498</div>
+                        <div class="small mb-1" th:text="${product.category}">category</div>
                         <h1 class="display-5 fw-bolder" th:text="${product.productName}">Shop item template</h1>
                         <div class="fs-5 mb-5">
                             <span class="text-decoration-line-through">$45.00</span>
