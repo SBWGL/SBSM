@@ -79,8 +79,9 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
+        log.info("실행");
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
@@ -98,4 +99,5 @@ public class MemberController {
             return "success";	// 중복 아이디 x
         }
     }
+
 }

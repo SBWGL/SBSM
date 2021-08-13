@@ -57,7 +57,11 @@
 
 <header class="site-header sticky-top py-1">
     <nav class="container d-flex flex-column flex-md-row justify-content-between">
-          <span class="py-2 d-none d-md-inline-block"
+        <span class="py-2 d-none d-md-inline-block"
+              style="color: #000;"
+              th:onclick="|location.href='@{/logout}'|"
+              href="#">logout</span>
+        <span class="py-2 d-none d-md-inline-block"
                 style="color: #000;"
                 th:onclick="|location.href='@{/#}'|"
                 href="#">OUTER</span>
