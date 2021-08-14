@@ -33,13 +33,13 @@
             </thead>
 
             <tbody>
-            <tr align="center" bgcolor="white">
-                <th>이미지</th>
-                <td>jeju</td>
-                <td>White</td>
-                <td>500</td>
-                <td>1</td>
-                <td>1000</td>
+            <tr th:each="basket : ${basket}" align="center" bgcolor="white" >
+                <th><img th:src="|/images/${basket.getStoreImageName()}|" width="150px" height="150px"/></th>
+                <td th:text="${basket.productName}">jeju</td>
+                <td th:text="${basket.color}">White</td>
+                <td th:text="${basket.size}">500</td>
+                <td th:text="${basket.count}">1</td>
+                <td th:text="${basket.price}">1000</td>
                 <td>삭제하기</td>
             </tr>
             </tbody>

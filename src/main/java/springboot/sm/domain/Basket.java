@@ -8,10 +8,10 @@ public class Basket {
     private int cartId;
     private String loginId;
     private int productId;
+    private String productName;
     private String storeImageName;
     private String color;
     private String size;
-    private int quantity;
+    private int count;
     private int price;
-    private int totalPrice;
 }

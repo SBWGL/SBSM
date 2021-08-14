@@ -37,17 +37,20 @@
                             </ul>
                         </li>
                     </ul>
+
                     <form class="d-flex">
                         <button class="btn btn-outline-dark" th:onclick="|location.href='@{/addProduct}'|" type="button">
-                            <i class="bi-cart-fill me-1"></i>
-                            RegisterProduct
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">상품 등록 하기</span>
+                        </button>
+                        <button class="btn btn-outline-dark" type="button" th:onclick="|location.href='@{/}'|">
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">전체 상품 보기</span>
                         </button>
                     </form>
                     <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
+                        <button class="btn btn-outline-dark" type="button" th:onclick="|location.href='@{/basket}'|">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+<!--                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>-->
                         </button>
                     </form>
                 </div>

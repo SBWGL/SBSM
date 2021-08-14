@@ -1,19 +1,59 @@
 package springboot.sm.controller;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import springboot.sm.domain.Basket;
+import springboot.sm.domain.Member;
+import springboot.sm.domain.Product;
+import springboot.sm.domain.basketform.GetBasket;
+import springboot.sm.file.FileStore;
+import springboot.sm.service.BasketService;
+import springboot.sm.service.ProductService;
+import springboot.sm.web.SessionConst;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.net.MalformedURLException;
+import java.util.List;
 
 @Controller
+@Slf4j
 public class BasketController {
 
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private BasketService basketService;
+
     @GetMapping("/basket")
-    public String basketPage(){
-        return "products/basket";
+    public String allBasket(Model model){
+        List<Basket> basketAll = basketService.findBasketAll();
+        model.addAttribute("basket",basketAll);
+        return "basket/basket";
     }
 
-    @PostMapping("/basket")
-    public String basketPage1(){
-        return "products/basket";
+    @PostMapping("/basket/addBasket/{productId}")
+    public String basketPage1(@PathVariable int productId, @RequestBody GetBasket form, HttpServletRequest request, Model model){
+        log.info("basketForm={}",form);
+        HttpSession session = request.getSession();
+        Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
+        Product product = productService.findProduct(productId);
+        Basket basket = new Basket();
+        basket.setLoginId(loginMember.getLoginId());
+        basket.setProductId(productId);
+        basket.setProductName(product.getProductName());
+        basket.setStoreImageName(product.getProductImage().getStoreImageName());
+        basket.setColor(form.getColor());
+        basket.setSize(form.getSize());
+        basket.setPrice(product.getPrice());
+        basket.setCount(form.getCount());
+        basketService.addBasket(basket);
+        model.addAttribute("basket",basket);
+        return "basket/basket";
     }
 }
