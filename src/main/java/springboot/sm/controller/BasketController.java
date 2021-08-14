@@ -2,8 +2,6 @@ package springboot.sm.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,14 +9,12 @@ import springboot.sm.domain.Basket;
 import springboot.sm.domain.Member;
 import springboot.sm.domain.Product;
 import springboot.sm.domain.basketform.GetBasket;
-import springboot.sm.file.FileStore;
 import springboot.sm.service.BasketService;
 import springboot.sm.service.ProductService;
 import springboot.sm.web.SessionConst;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.net.MalformedURLException;
 import java.util.List;
 
 @Controller
@@ -38,7 +34,7 @@ public class BasketController {
     }
 
     @PostMapping("/basket/addBasket/{productId}")
-    public String basketPage1(@PathVariable int productId, @RequestBody GetBasket form, HttpServletRequest request, Model model){
+    public String basketAdd(@PathVariable int productId, @RequestBody GetBasket form, HttpServletRequest request, Model model){
         log.info("basketForm={}",form);
         HttpSession session = request.getSession();
         Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
@@ -56,4 +52,13 @@ public class BasketController {
         model.addAttribute("basket",basket);
         return "basket/basket";
     }
+
+    @GetMapping("/basket/delete/{cartId}")
+    public String getCartId(@PathVariable int cartId){
+        log.info("cartId={}",cartId);
+        basketService.deleteBasket(cartId);
+        return "redirect:/basket";
+    }
+
+
 }

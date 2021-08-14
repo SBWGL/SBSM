@@ -13,12 +13,16 @@
             color: #dc3545;
         }
     </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="py-5 text-center">
         <h2 th:text="#{page.basket}">상품 등록</h2>
     </div>
-
+<form method="get">
         <table border="1" width="50%" height="200" cellspacing="5">
             <thead>
             <tr align="center" bgcolor="white">
@@ -33,17 +37,18 @@
             </thead>
 
             <tbody>
-            <tr th:each="basket : ${basket}" align="center" bgcolor="white" >
-                <th><img th:src="|/images/${basket.getStoreImageName()}|" width="150px" height="150px"/></th>
+            <tr align="center" bgcolor="white" th:each="basket : ${basket}">
+                <th><img th:src="|/images/${basket.getStoreImageName()}|" width="250px" height="250px"이미지/></th>
                 <td th:text="${basket.productName}">jeju</td>
                 <td th:text="${basket.color}">White</td>
                 <td th:text="${basket.size}">500</td>
                 <td th:text="${basket.count}">1</td>
                 <td th:text="${basket.price}">1000</td>
-                <td>삭제하기</td>
+                <td><button type="button" th:onclick="|location.href='@{|/basket/delete/${basket.cartId}|}'|">삭제하기</button></td>
             </tr>
             </tbody>
         </table>
-
+</form>
 </body>
+
 </html>

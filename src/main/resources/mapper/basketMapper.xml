@@ -5,11 +5,15 @@
 <mapper namespace="springboot.sm.mapper.BasketMapper">
 
     <select id="findBasketAll" resultType="Basket">
-        select * from basket;
+        select * from basket order by cartId desc;
     </select>
 
     <insert id="addBasket" parameterType="Basket">
         insert into basket values(cartId,#{loginId},#{productId},#{productName},#{storeImageName},#{color},#{size},#{count},#{price})
     </insert>
+
+    <delete id="deleteBasket" parameterType="int">
+        delete from basket where cartId=#{cartId}
+    </delete>
 
 </mapper>

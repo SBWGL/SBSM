@@ -22,4 +22,8 @@ public class BasketService {
     public void addBasket(Basket basket){
         basketMapper.addBasket(basket);
     }
+
+    public void deleteBasket(int cartId){
+        basketMapper.deleteBasket(cartId);
+    }
 }

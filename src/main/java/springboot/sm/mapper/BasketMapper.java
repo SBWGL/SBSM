@@ -13,4 +13,5 @@ public interface BasketMapper {
 
     List<Basket> findBasketAll();
     void addBasket(Basket basket);
+    void deleteBasket(int cartId);
 }
