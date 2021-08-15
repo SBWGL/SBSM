@@ -30,8 +30,7 @@ public class ProductController {
     FileStore fileStore;
 
     @GetMapping("/products/{category}")
-    public String products(Model model, Criteria cri, @PathVariable String category){
-//        List<Product> products = productService.products();
+    public String productsByCategory(Model model, Criteria cri, @PathVariable String category){
         List<Product> listPaging = productService.getListPaging(cri, category);// 페이징된 상품 전체 가져오기
         for (Product product : listPaging) {
             log.info("product={}",product);
@@ -40,6 +39,13 @@ public class ProductController {
         int total = productService.getTotal(category);
         PageMake pageMake = new PageMake(cri,total);
         model.addAttribute("pageMake",pageMake);
+        return "products/products";
+    }
+
+    @GetMapping("/products")
+    public String products(Model model){
+        List<Product> products = productService.products();
+        model.addAttribute("products",products);
         return "products/products";
     }
 
