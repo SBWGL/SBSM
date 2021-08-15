@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import springboot.sm.domain.common.Criteria;
 import springboot.sm.domain.common.PageMake;
+import springboot.sm.domain.productform.GetProduct;
 import springboot.sm.domain.productform.ProductSaveForm;
 import springboot.sm.domain.Product;
 import springboot.sm.domain.common.UploadFile;
@@ -47,6 +48,14 @@ public class ProductController {
         List<Product> products = productService.products();
         model.addAttribute("products",products);
         return "products/products";
+    }
+
+    @GetMapping("/products/find/{keyword}")
+    public String findProducts(@PathVariable String keyword, Model model){
+        log.info("keyword={}",keyword);
+        List<Product> productByKeyword = productService.findProductByKeyword(keyword);
+        model.addAttribute("products",productByKeyword);
+        return "products/searchProducts";
     }
 
     @GetMapping("/product/{productId}")
@@ -115,5 +124,6 @@ public class ProductController {
         productService.updateProduct(updateProduct);
         return "redirect:/product/{productId}";
     }
+
 
 }

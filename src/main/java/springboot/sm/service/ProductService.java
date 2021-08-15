@@ -53,6 +53,11 @@ public class ProductService {
         List<GetProduct> listPaging = productMapper.getListPaging(cri,category);
         return inputProductListData(listPaging);
     }
+//    검색
+    public List<Product> findProductByKeyword(String keyword){
+        List<GetProduct> productByKeyword = productMapper.findProductByKeyword(keyword);
+        return inputProductListData(productByKeyword);
+    }
 
 //    상품 전체가져오기 & 페이징 리팩토링
     public List<Product> inputProductListData(List<GetProduct> productList){

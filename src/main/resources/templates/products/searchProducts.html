@@ -116,26 +116,6 @@
                 </div>
             </div>
         </section>
-<!--paging process-->
-            <ul class="row gx-4 gx-lg-5 justify-content-center">
-                <form class="d-flex">
-                    <button class="btn btn-outline-dark" th:onclick="" type="button">
-                        <span aria-hidden="true">«</span>
-                        <span class="sr-only">Previous</span>
-                    </button>
-                </form>
-<!--                https://ksabs.tistory.com/113-->
-                    <div th:each="num,index : ${#numbers.sequence(pageMake.getStartPage(),pageMake.getEndPage())}">
-                        <a th:href="@{/products/{category}(category=${products[0].category},page=${index.current})}" th:text="${num}" class="page-link" href="">1</a></li>
-                    </div>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" th:onclick="" type="button">
-                            <span aria-hidden="true">»</span>
-                            <span class="sr-only">Next</span>
-                        </button>
-                    </form>
-            </ul>
-<!--paging process-->
 
         <!-- Footer-->
         <footer class="py-5 bg-dark">

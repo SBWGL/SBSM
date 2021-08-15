@@ -43,4 +43,9 @@
     <select id="getTotal" resultType="int" parameterType="String">
         select count(*) from products where category=#{category}
     </select>
+
+    <select id="findProductByKeyword" parameterType="String" resultType="GetProduct">
+        select * from products where productName like concat('%', #{keyword}, '%') order by productId desc
+    </select>
+
 </mapper>

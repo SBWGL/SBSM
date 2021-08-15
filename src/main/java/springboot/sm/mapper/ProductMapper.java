@@ -21,4 +21,5 @@ public interface ProductMapper {
     List<GetProduct> getListPaging(@Param("cri") Criteria cri,
                                    @Param("category") String category);
     int getTotal(String category);
+    List<GetProduct> findProductByKeyword(String keyword);
 }
