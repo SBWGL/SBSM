@@ -27,8 +27,16 @@ public class BasketController {
     private BasketService basketService;
 
     @GetMapping("/basket")
-    public String allBasket(Model model){
+    public String allBasket(Model model, HttpServletRequest request){
         List<Basket> basketAll = basketService.findBasketAll();
+        int totalPrice = 0;
+        for (Basket basket : basketAll) {
+            totalPrice += basket.getPrice() * basket.getCount();
+        }
+        HttpSession session = request.getSession();
+        Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
+        model.addAttribute("loginMember",loginMember);
+        model.addAttribute("totalPrice",totalPrice);
         model.addAttribute("basket",basketAll);
         return "basket/basket";
     }
@@ -48,6 +56,7 @@ public class BasketController {
         basket.setSize(form.getSize());
         basket.setPrice(product.getPrice());
         basket.setCount(form.getCount());
+        basket.setCalSum(form.getCount()*product.getPrice());
         basketService.addBasket(basket);
         model.addAttribute("basket",basket);
         return "basket/basket";
@@ -60,5 +69,9 @@ public class BasketController {
         return "redirect:/basket";
     }
 
-
+    @GetMapping("/basket/delete")
+    public String allDelete(){
+        basketService.deleteAllBasket();
+        return "redirect:/basket";
+    }
 }

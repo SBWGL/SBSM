@@ -26,4 +26,8 @@ public class BasketService {
     public void deleteBasket(int cartId){
         basketMapper.deleteBasket(cartId);
     }
+
+    public void deleteAllBasket(){
+        basketMapper.deleteAllBasket();
+    }
 }

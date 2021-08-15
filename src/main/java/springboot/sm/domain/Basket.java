@@ -14,4 +14,5 @@ public class Basket {
     private String size;
     private int count;
     private int price;
+    private int calSum;
 }

@@ -9,11 +9,15 @@
     </select>
 
     <insert id="addBasket" parameterType="Basket">
-        insert into basket values(cartId,#{loginId},#{productId},#{productName},#{storeImageName},#{color},#{size},#{count},#{price})
+        insert into basket values(cartId,#{loginId},#{productId},#{productName},#{storeImageName},#{color},#{size},#{count},#{price},#{calSum})
     </insert>
 
     <delete id="deleteBasket" parameterType="int">
         delete from basket where cartId=#{cartId}
+    </delete>
+
+    <delete id="deleteAllBasket">
+        delete from basket
     </delete>
 
 </mapper>

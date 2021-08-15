@@ -22,16 +22,23 @@
     <div class="py-5 text-center">
         <h2 th:text="#{page.basket}">상품 등록</h2>
     </div>
+    <form method="get">
+        <div class="py-8 text-center">
+            <h5>장바구니 상품 전체 삭제하기</h5>
+            <button type="button" th:onclick="|location.href='@{/basket/delete}'|">All 삭제</button>
+        </div>
+    </form>
 <form method="get">
         <table border="1" width="50%" height="200" cellspacing="5">
             <thead>
             <tr align="center" bgcolor="white">
-                <td>이미지</td>
+                <th>이미지</th>
                 <th>상품명</th>
                 <th>색상</th>
                 <th>사이즈</th>
                 <th>수량</th>
                 <th>가격</th>
+                <th>가격*수량</th>
                 <th>삭제</th>
             </tr>
             </thead>
@@ -44,11 +51,44 @@
                 <td th:text="${basket.size}">500</td>
                 <td th:text="${basket.count}">1</td>
                 <td th:text="${basket.price}">1000</td>
+                <td th:text="|=${basket.calSum}|">1000</td>
                 <td><button type="button" th:onclick="|location.href='@{|/basket/delete/${basket.cartId}|}'|">삭제하기</button></td>
             </tr>
             </tbody>
         </table>
+    <hr>
+    <div class="py-5 text-center">
+        <h2>총 금액</h2>
+        <h2 th:text="|${totalPrice}원|">상품 등록</h2>
+    </div>
+    <hr>
 </form>
+    <div class="py-5 text-center">
+        <h2 th:text="#{page.orderUser}">주문자 정보</h2>
+    </div>
+    <form method="get">
+        <table border="1" width="50%" height="200" cellspacing="5">
+            <thead>
+            <tr align="center" bgcolor="white">
+                <th>이름</th>
+                <th>로그인 Id</th>
+                <th>배송주소1</th>
+                <th>배송주소2</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr align="center" bgcolor="white">
+                <td th:text="${loginMember.name}">jeju</td>
+                <td th:text="${loginMember.loginId}">White</td>
+                <td th:text="${loginMember.address}">500</td>
+                <td th:text="${loginMember.detailAddress}">1</td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+
+
 </body>
 
 </html>
