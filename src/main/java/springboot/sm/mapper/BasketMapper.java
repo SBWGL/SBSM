@@ -15,4 +15,5 @@ public interface BasketMapper {
     void addBasket(Basket basket);
     void deleteBasket(int cartId);
     void deleteAllBasket();
+    String findLoginIdByCartId(int cartId);
 }

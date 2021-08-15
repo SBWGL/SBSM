@@ -15,6 +15,7 @@ import springboot.sm.web.SessionConst;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,15 +30,19 @@ public class BasketController {
     @GetMapping("/basket")
     public String allBasket(Model model, HttpServletRequest request){
         List<Basket> basketAll = basketService.findBasketAll();
-        int totalPrice = 0;
-        for (Basket basket : basketAll) {
-            totalPrice += basket.getPrice() * basket.getCount();
-        }
+        List<Basket> selectBasket = new ArrayList<>();
         HttpSession session = request.getSession();
         Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
+        int totalPrice = 0;
+        for (Basket basket : basketAll) {
+            if (basketService.findLoginIdByCartId(basket.getCartId()).equals(loginMember.getLoginId())){
+                totalPrice += basket.getPrice() * basket.getCount();
+                selectBasket.add(basket);
+            }
+        }
         model.addAttribute("loginMember",loginMember);
         model.addAttribute("totalPrice",totalPrice);
-        model.addAttribute("basket",basketAll);
+        model.addAttribute("basket",selectBasket);
         return "basket/basket";
     }
 

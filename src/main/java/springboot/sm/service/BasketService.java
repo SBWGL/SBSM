@@ -30,4 +30,8 @@ public class BasketService {
     public void deleteAllBasket(){
         basketMapper.deleteAllBasket();
     }
+
+    public String findLoginIdByCartId(int cartId){
+        return basketMapper.findLoginIdByCartId(cartId);
+    }
 }

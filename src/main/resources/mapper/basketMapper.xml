@@ -20,4 +20,8 @@
         delete from basket
     </delete>
 
+    <select id="findLoginIdByCartId" parameterType="int" resultType="String">
+        select loginId from basket where cartId=#{cartId}
+    </select>
+
 </mapper>
