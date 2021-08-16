@@ -30,12 +30,8 @@ public class ProductController {
     @Autowired
     FileStore fileStore;
 
-//    @RequestMapping(value = "products/{category}?page={page}", method = RequestMethod.GET)
     @GetMapping("/products/{category}")
-    public String productsByCategory(Model model, @ModelAttribute("cri") Criteria cri, @PathVariable String category,
-                                     @RequestParam(required = false) String page){
-        log.info("page={}",page);
-        log.info("cri={}",cri);
+    public String productsByCategory(Model model, @ModelAttribute("cri") Criteria cri, @PathVariable String category){
         List<Product> listPaging = productService.getListPaging(cri, category);// 페이징된 상품 전체 가져오기
         model.addAttribute("products",listPaging);
         int total = productService.getTotal(category);
@@ -46,10 +42,9 @@ public class ProductController {
 
     @GetMapping("/products/{category}/{page}")
     public String paging(Model model, @PathVariable String category, @PathVariable int page){
-        log.info("category={}",category);
-        log.info("page={}",page);
         Criteria cri = new Criteria();
         cri.setPageNum(page);
+
         List<Product> listPaging = productService.getListPaging(cri, category);// 페이징된 상품 전체 가져오기
         model.addAttribute("products",listPaging);
         int total = productService.getTotal(category);
