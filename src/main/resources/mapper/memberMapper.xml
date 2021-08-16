@@ -28,5 +28,10 @@
     <select id="idCheck" parameterType="String" resultType="int">
         select count(*) from members where loginId=#{loginId}
     </select>
+<!--로그인 중복 처리 끝 -->
+
+    <update id="memberUpdate">
+        update members set password = #{password} where loginId = #{loginId}
+    </update>
 
 </mapper>

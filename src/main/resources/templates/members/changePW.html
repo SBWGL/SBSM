@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+     .container {
+     max-width: 560px;
+     }
+     .field-error {
+     border-color: #dc3545;
+     color: #dc3545;
+     }
+ </style>
+</head>
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>비밀번호 변경</h2>
+    </div>
+    <form action="" th:action th:object="${pwUpdate}" method="post">
+        <div>
+            <label for="pw">현재 비밀번호</label>
+            <input type="text" id="pw" class="form-control">
+        </div>
+        <div>
+            <label for="changePw">새 비밀번호</label>
+            <input type="text" id="changePw" class="form-control">
+        </div>
+        <div>
+            <label for="changePwCheck">새 비밀번호 확인</label>
+            <input type="text" id="changePwCheck" class="form-control">
+        </div>
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg" type="submit">변경</button>
+        </div>
+    </form>
+</div> <!-- /container -->
+</body>
+<script>
+</script>
+</html>

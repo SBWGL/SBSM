@@ -12,6 +12,7 @@ import java.util.Optional;
 public interface MemberMapper {
 
     void memberSave(Member member);
+    void memberUpdate(Member member);
 
     /**
      * Mapper랑 연결 즉 우리가 memberSave를 만들어줌

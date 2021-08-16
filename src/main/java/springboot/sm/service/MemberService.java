@@ -25,6 +25,8 @@ public class MemberService {
         memberMapper.memberSave(member);
     }
 
+    public void memberUpdate(Member member) { memberMapper.memberUpdate(member);}
+
     public List<Member> findAll() {
         return memberMapper.findAll();
     }

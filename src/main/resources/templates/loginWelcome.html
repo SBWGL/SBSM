@@ -53,9 +53,20 @@
           </svg>
         </span>
             <span class="py-2 d-none d-md-inline-block"
-                  style="margin-left: 1250px; color: #000;"
+                  style="margin-left: 1000px; color: #000;"
+                  th:onclick="|location.href='@{/basket}'|"
+                  href="#">장바구니
+            </span>
+            <span class="py-2 d-none d-md-inline-block"
+                  style="margin-left: 15px; color: #000;"
+                  th:onclick="|location.href='@{/myPage}'|"
+                  href="#">마이페이지
+            </span>
+            <span class="py-2 d-none d-md-inline-block"
+                  style="margin-left: 15px; color: #000;"
                   th:onclick="|location.href='@{/logout}'|"
-                  href="#">logout</span>
+                  href="#">logout
+            </span>
         </div>
     </div>
 </div>

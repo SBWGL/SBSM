@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    .container {
+        max-width: 560px;
+    }
+    .field-error {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>마이페이지</h2>
+    </div>
+    <form>
+    <label for="loginId">로그인 ID</label>
+    <input type="text" id="loginId"
+           class="form-control" th:value="${loginMember.loginId}" disabled>
+    <label for="loginId">이름</label>
+    <input type="text" id="name"
+           class="form-control" th:value="${loginMember.name}" disabled>
+    <label for="loginId">주소</label>
+    <input type="text" id="address"
+           class="form-control" th:value="${loginMember.address}" disabled>
+    <input type="text" id="detailAddress"
+           class="form-control" th:value="${loginMember.detailAddress}" disabled>
+    <input type="hidden" id="password"
+           class="form-control" th:value="${loginMember.password}" disabled>
+        <hr class="my-4">
+        <div class="row">
+            <div class="col">
+                <button class="w-100 btn btn-primary btn-lg"
+                        id="pwCheck"
+                        type="button">회원 정보 수정</button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg"
+                        th:onclick="|location.href='@{/}'|"
+                        type="button">확인</button>
+            </div>
+        </div>
+    </form>
+</div> <!-- /container -->
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var password = $('#password').val();
+
+    $("#pwCheck").click(function(){
+        var pwCheck = prompt("회원 정보를 수정하기위해 현재 비밀번호를 입력하세요.","PASSWORD");
+        if(pwCheck == password){
+            $.ajax({
+                type:"POST",
+                url:"changePW",
+                success:function(data){
+                    location.replace(data);
+                    console.log("성공");
+                }
+            });
+        }
+        else {
+            console.log("실패");
+        }
+    });
+</script>
+</html>
