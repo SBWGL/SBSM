@@ -5,6 +5,7 @@ import lombok.extern.slf4j.XSlf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springboot.sm.domain.Member;
+import springboot.sm.domain.updateform.PwUpdate;
 import springboot.sm.mapper.MemberMapper;
 
 import java.util.List;
@@ -25,7 +26,9 @@ public class MemberService {
         memberMapper.memberSave(member);
     }
 
-    public void memberUpdate(Member member) { memberMapper.memberUpdate(member);}
+    public void updatePw(PwUpdate pwUpdate) {
+        memberMapper.updatePw(pwUpdate);
+    }
 
     public List<Member> findAll() {
         return memberMapper.findAll();

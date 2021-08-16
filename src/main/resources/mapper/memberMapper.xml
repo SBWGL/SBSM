@@ -30,8 +30,8 @@
     </select>
 <!--로그인 중복 처리 끝 -->
 
-    <update id="memberUpdate">
-        update members set password = #{password} where loginId = #{loginId}
+    <update id="updatePw" parameterType="PwUpdate">
+        update members set password = #{changePw} where loginId = #{loginId}
     </update>
 
 </mapper>

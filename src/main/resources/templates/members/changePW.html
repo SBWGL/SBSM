@@ -12,6 +12,14 @@
      border-color: #dc3545;
      color: #dc3545;
      }
+     .errorPw{
+        color : red;
+        display : none;
+     }
+     .agreePw{
+        color : green;
+        display : none
+     }
  </style>
 </head>
 <body>
@@ -21,16 +29,19 @@
     </div>
     <form action="" th:action th:object="${pwUpdate}" method="post">
         <div>
-            <label for="pw">현재 비밀번호</label>
-            <input type="text" id="pw" class="form-control">
+            <label for="password">현재 비밀번호</label>
+            <input type="password" id="password" th:field="*{password}" class="form-control">
+            <span class="errorPw">현재 비밀번호가 틀렸습니다.</span>
+            <span class="agreePw">현재 비밀번호가 맞습니다.</span>
         </div>
         <div>
             <label for="changePw">새 비밀번호</label>
-            <input type="text" id="changePw" class="form-control">
+            <input type="password" id="changePw" th:field="*{changePw}" class="form-control"
+                   th:errorclass="field-error">
         </div>
         <div>
             <label for="changePwCheck">새 비밀번호 확인</label>
-            <input type="text" id="changePwCheck" class="form-control">
+            <input type="password" id="changePwCheck" class="form-control">
         </div>
         <div class="col">
             <button class="w-100 btn btn-primary btn-lg" type="submit">변경</button>
@@ -38,6 +49,27 @@
     </form>
 </div> <!-- /container -->
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+$('#password').on("propertychange change keyup paste input", function(){
+	var password = $('#password').val();
+	var data = {password : password}
+    var id = $('#loginId').val();
+    console.log(id);
+	$.ajax({
+		type : "post",
+		url : "/pwCheck",
+		data : data,
+        success : function(result){
+            if(result != 'fail'){
+                $('.errorPw').css("display","none");
+                $('.agreePw').css("display", "inline-block");
+            } else {
+                $('.errorPw').css("display","inline-block");
+                $('.agreePw').css("display", "none");
+            }
+        }// success 종료
+	}); // ajax 종료
+});
 </script>
 </html>

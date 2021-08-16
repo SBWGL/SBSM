@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class PwUpdate {
 
-    private String pw;
+    private String loginId;
+    private String password;
     private String changePw;
 }

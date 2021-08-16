@@ -3,6 +3,7 @@ package springboot.sm.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import springboot.sm.domain.Member;
+import springboot.sm.domain.updateform.PwUpdate;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +13,7 @@ import java.util.Optional;
 public interface MemberMapper {
 
     void memberSave(Member member);
-    void memberUpdate(Member member);
+    void updatePw(PwUpdate pwUpdate);
 
     /**
      * Mapper랑 연결 즉 우리가 memberSave를 만들어줌
