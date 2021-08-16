@@ -117,20 +117,13 @@
             </div>
         </section>
 <!--paging process-->
-            <ul class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="container px-4 px-lg-5 mt-5">
+            <ul class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 <form class="d-flex">
                     <button class="btn btn-outline-dark" type="button">
                         <span aria-hidden="true" class="badge bg-white text-black ms-1 rounded-pill">«</span>
                         <span class="sr-only">Previous</span>
                     </button>
-<!--                https://ksabs.tistory.com/113-->
-<!--                    <div th:each="num,index : ${#numbers.sequence(pageMake.getStartPage(),pageMake.getEndPage())}">-->
-<!--                        <button class="btn btn-outline-dark">-->
-<!--                            <span class="badge bg-white text-black ms-1 rounded-pill">-->
-<!--                                <a th:href="@{/products/{category}(category=${products[0].category},page=${index.current})}" th:text="${num}">1</a>-->
-<!--                            </span>-->
-<!--                        </button>-->
-<!--                    </div>-->
                     <div th:each="num,index : ${#numbers.sequence(pageMake.getStartPage(),pageMake.getEndPage())}">
                         <button class="btn btn-outline-dark">
                             <span class="badge bg-white text-black ms-1 rounded-pill">
@@ -144,6 +137,7 @@
                     </button>
                 </form>
             </ul>
+        </div>
 <!--paging process-->
 
         <!-- Footer-->
