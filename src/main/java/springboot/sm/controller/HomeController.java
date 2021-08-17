@@ -32,6 +32,9 @@ public class HomeController {
         if (loginMember == null) {
             return "welcome";
         }
+        else if (loginMember.getRole().equals("admin")){
+            return "adminWelcome";
+        }
         else {
             //세션이 유지되면 로그인으로 이동
             model.addAttribute("member", loginMember);
@@ -44,6 +47,8 @@ public class HomeController {
 
         return "/errorAdmin";
     }
+
+
 }
 
 

@@ -3,6 +3,7 @@ package springboot.sm.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import springboot.sm.web.SessionConst;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 
 @Controller
@@ -22,6 +24,9 @@ public class MemberController {
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     /**
      * DP_ @Autowired로 의존성 주입 즉 memberService 변수 안에 객체를 상황에 따라 변경가능
@@ -42,6 +47,12 @@ public class MemberController {
         if (bindingResult.hasErrors()) {
             return "members/loginForm";
         }
+        Optional<Member> byLoginId = memberService.findByLoginId(loginform.getLoginId());
+
+
+        if(passwordEncoder.matches(loginform.getPassword(), byLoginId.get().getPassword())) {
+            log.info("비밀번호일치");
+        }
 
         Member loginMember = memberService.login(loginform.getLoginId(), loginform.getPassword());
 
@@ -49,6 +60,7 @@ public class MemberController {
             bindingResult.reject("loginFail", "loginId OR password ERROR");
             return "members/loginForm";
         } /** DP_ 아이디, 비밀번호 오류일 때 예외상황 **/
+
 
         //세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
         HttpSession session = httpServletRequest.getSession(true);
@@ -74,6 +86,8 @@ public class MemberController {
             return "members/signUpForm";
         }
         /** DP_ Member객체인 member로 signUpForm 이동 **/
+        String encodedPassword = passwordEncoder.encode(member.getPassword());
+        member.setPassword(encodedPassword);
         memberService.memberSave(member);
         return "redirect:/";
     }

@@ -24,19 +24,29 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LogInterceptor())// 인터셉터 등록
                 .order(1)// 호출 순서
                 .addPathPatterns("/**")// 적용 url 패턴
-                .excludePathPatterns("/css/**", "/*.ico", "/error");// 제외 url 패턴
+                .excludePathPatterns("/", "/signUp", "/login", "/logout",
+                        "/css/**", "/*.ico", "/*.js", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin",
+                        "products/OUTER", "products/TOP", "products/KINT", "products/SHIRT", "products/PANTS", "products/SHOES", "products/ACC"
+                );
+
 
         registry.addInterceptor(new LoginCheckInterceptor())
                 .order(2)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/", "/signUp", "/login", "/logout",
-                        "/css/**", "/*.ico", "/*.js", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin");
+                        "/css/**", "/*.ico", "/*.js", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin",
+                        "/products/OUTER", "/products/TOP", "/products/KINT", "/products/SHIRT", "/products/PANTS", "/products/SHOES", "/products/ACC",
+                        "/product/*"
+                );
 
         registry.addInterceptor(new AdminIntercepter())
                 .order(3)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/", "/signUp", "/login", "/logout",
-                        "/css/**", "/*.ico", "/*.js", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin");
+                        "/css/**", "/*.ico", "/*.js", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin",
+                        "/products/OUTER", "/products/TOP", "/products/KINT", "/products/SHIRT", "/products/PANTS", "/products/SHOES", "/products/ACC",
+                        "/product/*", "/myPage", "/changePW", "/members/changePW", "/pwCheck", "/basket"
+                );
 
     }
 
