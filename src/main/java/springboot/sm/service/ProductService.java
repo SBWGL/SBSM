@@ -58,8 +58,13 @@ public class ProductService {
         List<GetProduct> productByKeyword = productMapper.findProductByKeyword(keyword);
         return inputProductListData(productByKeyword);
     }
+//    연관 상품
+    public List<Product> relatedProduct(String category){
+        List<GetProduct> getProducts = productMapper.relatedProduct(category);
+        return inputProductListData(getProducts);
+    }
 
-//    상품 전체가져오기 & 페이징 리팩토링
+//    상품 전체가져오기 & 페이징 리팩토링 & 검색
     public List<Product> inputProductListData(List<GetProduct> productList){
         List<Product> convertProduct = new ArrayList<>();
         for (GetProduct getProduct : productList) {

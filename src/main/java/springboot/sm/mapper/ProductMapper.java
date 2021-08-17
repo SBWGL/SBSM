@@ -22,4 +22,5 @@ public interface ProductMapper {
                                    @Param("category") String category);
     int getTotal(String category);
     List<GetProduct> findProductByKeyword(String keyword);
+    List<GetProduct> relatedProduct(String category);
 }

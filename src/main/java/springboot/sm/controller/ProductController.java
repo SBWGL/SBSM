@@ -72,6 +72,8 @@ public class ProductController {
     public String detailProduct(@PathVariable int productId,Model model){
         Product product = productService.findProduct(productId);
         model.addAttribute("product",product);
+        List<Product> products = productService.relatedProduct(product.getCategory());
+        model.addAttribute("relateProduct",products);
         return "products/detailProduct";
     }
 
