@@ -38,6 +38,12 @@ public class HomeController {
             return "loginWelcome";
         }
     }
+
+    @GetMapping("/errorAdmin")
+    public String errorAdmin() {
+
+        return "/errorAdmin";
+    }
 }
 
 

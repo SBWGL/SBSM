@@ -16,4 +16,5 @@ public class Member {
     private String postcode;
     private String address;
     private String detailAddress;
+    private String role;
 }

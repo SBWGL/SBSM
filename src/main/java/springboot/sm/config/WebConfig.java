@@ -5,6 +5,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springboot.sm.argumentresolver.LoginMemberArgumentResolver;
+import springboot.sm.interceptor.AdminIntercepter;
 import springboot.sm.interceptor.LogInterceptor;
 import springboot.sm.interceptor.LoginCheckInterceptor;
 
@@ -29,7 +30,14 @@ public class WebConfig implements WebMvcConfigurer {
                 .order(2)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/", "/signUp", "/login", "/logout",
-                        "/css/**", "/*.ico", "/*.js", "/js/**", "/error","/memberIdCheck","/mailCheck");
+                        "/css/**", "/*.ico", "/*.js", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin");
+
+        registry.addInterceptor(new AdminIntercepter())
+                .order(3)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/", "/signUp", "/login", "/logout",
+                        "/css/**", "/*.ico", "/*.js", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin");
+
     }
 
 }
