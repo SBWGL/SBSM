@@ -3,6 +3,7 @@ package springboot.sm.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,9 @@ public class MyPageController {
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/myPage")
     public String myPage(Model model, HttpServletRequest request) {
@@ -52,7 +56,7 @@ public class MyPageController {
     public String pwCheck(String password, HttpServletRequest request) throws Exception{
         HttpSession session = request.getSession();
         Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
-        if (loginMember.getPassword().equals(password)) {
+        if (passwordEncoder.matches(password, loginMember.getPassword())) {
             log.info("success");
             return "success";
         }else{

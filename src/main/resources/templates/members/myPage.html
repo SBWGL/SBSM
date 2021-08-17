@@ -54,8 +54,6 @@
     var password = $('#password').val();
 
     $("#pwCheck").click(function(){
-        var pwCheck = prompt("회원 정보를 수정하기위해 현재 비밀번호를 입력하세요.","PASSWORD");
-        if(pwCheck == password){
             $.ajax({
                 type:"POST",
                 url:"changePW",
@@ -64,10 +62,6 @@
                     console.log("성공");
                 }
             });
-        }
-        else {
-            console.log("실패");
-        }
     });
 </script>
 </html>
