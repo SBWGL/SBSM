@@ -35,6 +35,16 @@
           font-size: 3.5rem;
         }
       }
+      .click{
+        color: #9EA4AA;
+        text-decoration: none;
+      }
+
+      .click:hover {
+        color: black;
+        text-decoration-color: black;
+        text-decoration-thickness: 2.5px;
+      }
     </style>
 
 
@@ -47,68 +57,55 @@
 <div>
     <div>
         <div>
-        <span class="py-2" href="#" aria-label="Product">
-          <svg xmlns="http://www.w3.org/2000/svg"
-               width="50" height="50" fill="none" stroke="currentColor"
-               stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-               class="py-2 d-none d-md-inline-block"
-               role="img" viewBox="0 0 24 24"><title>Product</title>
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/>
-          </svg>
-        </span>
             <span class="py-2 d-none d-md-inline-block"
-                  style="margin-left: 1000px; color: #000;"
+                  style="margin-left: 1200px; color: #000;"
                   th:onclick="|location.href='@{/addProduct}'|"
-                  href="#">상품 추가
-            </span>
+                  href="#"><a href="#" class="click">상품 추가</a></span>
             <span class="py-2 d-none d-md-inline-block"
-                  style="margin-left: 15px; color: #000;"
+                  style="margin-left: 7.5px; color: #000;"
                   th:onclick="|location.href='@{/logout}'|"
-                  href="#">로그아웃
-            </span>
+                  href="#"><a href="#" class="click">로그아웃</a></span>
         </div>
+        <a th:onclick="|location.href='@{/}'|">
+            <img src="/image/5.png" style="display: block; height: 60px; margin-left: 625.5px;">
+        </a>
     </div>
 </div>
 
 <header class="site-header sticky-top py-1" style="background-color: #FFFFFF; border-width: 0px 0px 2px 0px; border-style: solid; border-color: black">
     <nav class="container d-flex flex-column flex-md-row justify-content-between navbar navbar-light">
-        <div>
-      <span class="py-2 d-none d-md-inline-block"
-            style="color: #000;"
-            th:onclick="|location.href='@{/products/OUTER}'|"
-            th:text="OUTER">
-      </span>
-        </div>
+       <span class="py-2 d-none d-md-inline-block"
+             style="color: #000;"
+             th:onclick="|location.href='@{/products/OUTER}'|"
+       ><a href="#" class="click">OUTER</a></span>
         <span class="py-2 d-none d-md-inline-block"
               style="color: #000;"
               th:onclick="|location.href='@{/products/TOP}'|"
-              th:text="TOP"></span>
+        ><a href="#" class="click">TOP</a></span>
         <span class="py-2 d-none d-md-inline-block"
               style="color: #000;"
               th:onclick="|location.href='@{/products/KINT}'|"
-              th:text="KINT"></span>
+        ><a href="#" class="click">KINT</a></span>
         <span class="py-2 d-none d-md-inline-block"
               style="color: #000;"
               th:onclick="|location.href='@{/products/SHIRT}'|"
-              th:text="SHIRT"></span>
+        ><a href="#" class="click">SHIRT</a></span>
         <span class="py-2 d-none d-md-inline-block"
               style="color: #000;"
               th:onclick="|location.href='@{/products/PANTS}'|"
-              th:text="PANTS"></span>
+        ><a href="#" class="click">PANTS</a></span>
         <span class="py-2 d-none d-md-inline-block"
               style="color: #000;"
               th:onclick="|location.href='@{/products/SHOES}'|"
-              th:text="SHOES"></span>
+        ><a href="#" class="click">SHOES</a></span>
         <span class="py-2 d-none d-md-inline-block"
               style="color: #000;"
               th:onclick="|location.href='@{/products/ACC}'|"
-              th:text="ACC"></span>
+        ><a href="#" class="click">ACC</a></span>
     </nav>
 </header>
 
 <main>
-    <div class="container"><h2 style="text-align:center;">VSBSM</h2></div>
     <div id="demo" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner"> <!-- 슬라이드 쇼 -->
             <div class="carousel-item active"> <!--가로-->
@@ -148,118 +145,53 @@
             </ul>
         </div>
     </div>
-
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-        <div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-            <div class="my-3 py-3">
-                <h2 class="display-5">Another headline</h2>
-                <p class="lead">And an even wittier subheading.</p>
-            </div>
-            <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-        </div>
-        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-            <div class="my-3 p-3">
-                <h2 class="display-5">Another headline</h2>
-                <p class="lead">And an even wittier subheading.</p>
-            </div>
-            <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-        </div>
-    </div>
-
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-            <div class="my-3 p-3">
-                <h2 class="display-5">Another headline</h2>
-                <p class="lead">And an even wittier subheading.</p>
-            </div>
-            <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-        </div>
-        <div class="bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-            <div class="my-3 py-3">
-                <h2 class="display-5">Another headline</h2>
-                <p class="lead">And an even wittier subheading.</p>
-            </div>
-            <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-        </div>
-    </div>
-
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-            <div class="my-3 p-3">
-                <h2 class="display-5">Another headline</h2>
-                <p class="lead">And an even wittier subheading.</p>
-            </div>
-            <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-        </div>
-        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-            <div class="my-3 py-3">
-                <h2 class="display-5">Another headline</h2>
-                <p class="lead">And an even wittier subheading.</p>
-            </div>
-            <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-        </div>
-    </div>
-
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-            <div class="my-3 p-3">
-                <h2 class="display-5">Another headline</h2>
-                <p class="lead">And an even wittier subheading.</p>
-            </div>
-            <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-        </div>
-        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-            <div class="my-3 py-3">
-                <h2 class="display-5">Another headline</h2>
-                <p class="lead">And an even wittier subheading.</p>
-            </div>
-            <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-        </div>
-    </div>
 </main>
-
+<hr class="my-4" style="color: black;">
 <footer class="container py-5">
     <div class="row">
-        <div class="col-12 col-md">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
-            <small class="d-block mb-3 text-muted">&copy; 2017–2021</small>
+        <div class="col-2 col-md">
+            <font class="d-block mb-3" style="font-size: 25px; color: black;">쇼핑몰 프로젝트</font>
+            <font class="d-block mb-3 text-muted">이정환, 공대표</font>
+            <small class="d-block mb-3 text-muted">&copy;2021.08.09 ~ 2021.08.27</small>
         </div>
         <div class="col-6 col-md">
-            <h5>Features</h5>
+            <h5>프로젝트 정보</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="#">Cool stuff</a></li>
-                <li><a class="link-secondary" href="#">Random feature</a></li>
-                <li><a class="link-secondary" href="#">Team feature</a></li>
-                <li><a class="link-secondary" href="#">Stuff for developers</a></li>
-                <li><a class="link-secondary" href="#">Another one</a></li>
-                <li><a class="link-secondary" href="#">Last time</a></li>
+                <li><a class="link-secondary" href="#">Spring Boot</a></li>
+                <li><a class="link-secondary" href="#">thymeleaf</a></li>
+                <li><a class="link-secondary" href="#">mySQL</a></li>
+                <li><a class="link-secondary" href="#">mybatis</a></li>
+                <li><a class="link-secondary" href="#">Bootstrap</a></li>
+                <li><a class="link-secondary" href="#">jQuary</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">
-            <h5>Resources</h5>
+            <h5>회원 페이지</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="#">Resource name</a></li>
-                <li><a class="link-secondary" href="#">Resource</a></li>
-                <li><a class="link-secondary" href="#">Another resource</a></li>
-                <li><a class="link-secondary" href="#">Final resource</a></li>
+                <li><a class="link-secondary" href="#">회원가입</a></li>
+                <li><a class="link-secondary" href="#">이메일 인증</a></li>
+                <li><a class="link-secondary" href="#">주소 api</a></li>
+                <li><a class="link-secondary" href="#">비밀번호 암호화</a></li>
+                <li><a class="link-secondary" href="#">로그인</a></li>
+                <li><a class="link-secondary" href="#">마이페이지</a></li>
+                <li><a class="link-secondary" href="#">비밀번호 변경</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">
-            <h5>Resources</h5>
+            <h5>장바구니 페이지</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="#">Business</a></li>
-                <li><a class="link-secondary" href="#">Education</a></li>
-                <li><a class="link-secondary" href="#">Government</a></li>
-                <li><a class="link-secondary" href="#">Gaming</a></li>
+                <li><a class="link-secondary" href="#">장바구니 등록</a></li>
+                <li><a class="link-secondary" href="#">장바구니 개별 삭제</a></li>
+                <li><a class="link-secondary" href="#">장바구니 전체 삭제</a></li>
+                <li><a class="link-secondary" href="#">주문자 정보</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">
-            <h5>About</h5>
+            <h5>그 외</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="#">Team</a></li>
-                <li><a class="link-secondary" href="#">Locations</a></li>
-                <li><a class="link-secondary" href="#">Privacy</a></li>
-                <li><a class="link-secondary" href="#">Terms</a></li>
+                <li><a class="link-secondary" href="#">Interceptor를 통해 미로그인시 이동 제한</a></li>
+                <li><a class="link-secondary" href="#">회원가입 및 장바구니 등록 시 Validation 등록</a></li>
+                <li><a class="link-secondary" href="#">에러 처리</a></li>
             </ul>
         </div>
     </div>
