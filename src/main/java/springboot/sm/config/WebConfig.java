@@ -5,9 +5,9 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springboot.sm.argumentresolver.LoginMemberArgumentResolver;
-import springboot.sm.interceptor.AdminIntercepter;
 import springboot.sm.interceptor.LogInterceptor;
 import springboot.sm.interceptor.LoginCheckInterceptor;
+import springboot.sm.interceptor.UserIntercepter;
 
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class WebConfig implements WebMvcConfigurer {
                         "/product/*"
                 );
 
-        registry.addInterceptor(new AdminIntercepter())
+        registry.addInterceptor(new UserIntercepter())
                 .order(3)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/", "/signUp", "/login", "/logout",
@@ -49,11 +49,7 @@ public class WebConfig implements WebMvcConfigurer {
 
                 );
 
-        registry.addInterceptor(new AdminIntercepter())
-                .order(4)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/", "/**"
-                );
+
 
     }
 
