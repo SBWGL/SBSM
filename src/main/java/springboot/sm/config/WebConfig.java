@@ -25,7 +25,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .order(1)// 호출 순서
                 .addPathPatterns("/**")// 적용 url 패턴
                 .excludePathPatterns("/", "/signUp", "/login", "/logout",
-                        "/css/**", "/*.ico", "/*.js", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin",
+                        "/css/**", "/*.ico", "/*.js", "/images/**", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin",
                         "products/OUTER", "products/TOP", "products/KINT", "products/SHIRT", "products/PANTS", "products/SHOES", "products/ACC"
                 );
 
@@ -34,7 +34,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .order(2)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/", "/signUp", "/login", "/logout",
-                        "/css/**", "/*.ico", "/*.js", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin",
+                        "/css/**", "/*.ico", "/*.js", "/images/**", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin",
                         "/products/OUTER", "/products/TOP", "/products/KINT", "/products/SHIRT", "/products/PANTS", "/products/SHOES", "/products/ACC",
                         "/product/*"
                 );
@@ -43,7 +43,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .order(3)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/", "/signUp", "/login", "/logout",
-                        "/css/**", "/*.ico", "/*.js", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin",
+                        "/css/**", "/*.ico", "/*.js", "/images/**", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin",
                         "/products/OUTER", "/products/TOP", "/products/KINT", "/products/SHIRT", "/products/PANTS", "/products/SHOES", "/products/ACC",
                         "/product/*", "/basket", "/myPage", "/changePW", "/members/changePW", "/pwCheck"
 
