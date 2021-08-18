@@ -1,5 +1,5 @@
 # Springboot_SM
-# 스프링부트 공부겸 자기개발을 위한 쇼핑몰 프로젝트(2021/08/09 - 2021/08/27)
+# 스프링부트 공부겸 자기개발을 위한 쇼핑몰 프로젝트(2021/08/09 - 2021/08/20)
 ---
 ***use SpringBoot + thymeleaf + mybatis(mySQL) + Bootstrap + jQuary***
 
