@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import springboot.sm.domain.Member;
+import springboot.sm.domain.Review;
 import springboot.sm.domain.common.Criteria;
 import springboot.sm.domain.common.PageMake;
 import springboot.sm.domain.productform.GetProduct;
@@ -16,9 +18,14 @@ import springboot.sm.domain.Product;
 import springboot.sm.domain.common.UploadFile;
 import springboot.sm.file.FileStore;
 import springboot.sm.service.ProductService;
+import springboot.sm.web.SessionConst;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -69,12 +76,33 @@ public class ProductController {
     }
 
     @GetMapping("/product/{productId}")
-    public String detailProduct(@PathVariable int productId,Model model){
+    public String detailProduct(@PathVariable int productId, Model model){
         Product product = productService.findProduct(productId);
         model.addAttribute("product",product);
         List<Product> products = productService.relatedProduct(product.getCategory());
         model.addAttribute("relateProduct",products);
+        List<Review> reviews = productService.allReview(productId);
+        model.addAttribute("reviews",reviews);
         return "products/detailProduct";
+    }
+
+    @PostMapping("/product/{productId}")
+    public String detailProductAndAddReview(@PathVariable int productId, Model model, HttpServletRequest request,
+                                            @RequestBody String reviewContents){
+        Product product = productService.findProduct(productId);
+        model.addAttribute("product",product);
+        List<Product> products = productService.relatedProduct(product.getCategory());
+        model.addAttribute("relateProduct",products);
+        HttpSession session = request.getSession();
+        Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
+        Review review = new Review();
+        review.setLoginId(loginMember.getLoginId());
+        review.setProductId(productId);
+        review.setContents(reviewContents.substring(1,reviewContents.length()-1));
+        String time = Timestamp.valueOf(LocalDateTime.now()).toString();
+        review.setCreateDate(time.substring(0,16));
+        productService.addReview(review);
+        return "redirect:/products/detailProduct";
     }
 
     @GetMapping("/addProduct")
