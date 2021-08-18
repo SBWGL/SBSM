@@ -45,7 +45,14 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/", "/signUp", "/login", "/logout",
                         "/css/**", "/*.ico", "/*.js", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin",
                         "/products/OUTER", "/products/TOP", "/products/KINT", "/products/SHIRT", "/products/PANTS", "/products/SHOES", "/products/ACC",
-                        "/product/*", "/myPage", "/changePW", "/members/changePW", "/pwCheck", "/basket"
+                        "/product/*", "/basket", "/myPage", "/changePW", "/members/changePW", "/pwCheck"
+
+                );
+
+        registry.addInterceptor(new AdminIntercepter())
+                .order(4)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/", "/**"
                 );
 
     }

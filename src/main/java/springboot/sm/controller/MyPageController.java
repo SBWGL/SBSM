@@ -76,9 +76,8 @@ public class MyPageController {
         model.addAttribute("loginMember", loginMember);
 
         pwUpdate.setLoginId(loginMember.getLoginId());
-        log.info(pwUpdate.getLoginId());
-        log.info(pwUpdate.getPassword());
-        log.info(pwUpdate.getChangePw());
+        String encodedPassword = passwordEncoder.encode(pwUpdate.getChangePw());
+        pwUpdate.setChangePw(encodedPassword);
         memberService.updatePw(pwUpdate);
         if (session != null) {
             session.invalidate();

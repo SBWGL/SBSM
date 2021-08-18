@@ -96,6 +96,7 @@ public class MemberController {
     public String logout(HttpServletRequest request) {
         log.info("실행");
         HttpSession session = request.getSession(false);
+        log.info("하이 : session " + session);
         if (session != null) {
             session.invalidate();
         }
