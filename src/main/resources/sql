@@ -36,3 +36,12 @@ primary key(cartId),
 foreign key(loginId) references members(loginId),
 foreign key(productId) references products(productId)
 );
+
+create table review(
+reviewId int not null auto_increment,
+loginId varchar(20) not null,
+productId int not null,
+contents varchar(200) not null,
+createDate varchar(30) not null,
+primary key(reviewId)
+);

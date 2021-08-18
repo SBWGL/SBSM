@@ -52,4 +52,12 @@
         select * from products where category=#{category} order by productId desc limit 0,4
     </select>
 
+    <insert id="addReview" parameterType="Review">
+        insert into review values(reviewId,#{loginId},#{productId},#{contents},#{createDate})
+    </insert>
+
+    <select id="allReview" resultType="Review" parameterType="int">
+        select * from review where productId=#{productId}
+    </select>
+
 </mapper>

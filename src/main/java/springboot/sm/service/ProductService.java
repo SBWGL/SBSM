@@ -3,6 +3,7 @@ package springboot.sm.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import springboot.sm.domain.Review;
 import springboot.sm.domain.common.Criteria;
 import springboot.sm.domain.productform.GetProduct;
 import springboot.sm.domain.Product;
@@ -105,4 +106,11 @@ public class ProductService {
         return productMapper.getTotal(category);
     }
 
+    public void addReview(Review review){
+        productMapper.addReview(review);
+    }
+
+    public List<Review> allReview(int productId){
+        return productMapper.allReview(productId);
+    }
 }

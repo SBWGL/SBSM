@@ -3,6 +3,7 @@ package springboot.sm.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import springboot.sm.domain.Review;
 import springboot.sm.domain.common.Criteria;
 import springboot.sm.domain.common.UploadFile;
 import springboot.sm.domain.productform.GetProduct;
@@ -23,4 +24,6 @@ public interface ProductMapper {
     int getTotal(String category);
     List<GetProduct> findProductByKeyword(String keyword);
     List<GetProduct> relatedProduct(String category);
+    void addReview(Review review);
+    List<Review> allReview(int productId);
 }
