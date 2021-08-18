@@ -113,4 +113,8 @@ public class ProductService {
     public List<Review> allReview(int productId){
         return productMapper.allReview(productId);
     }
+
+    public void deleteReview(int reviewId){
+        productMapper.deleteReview(reviewId);
+    }
 }

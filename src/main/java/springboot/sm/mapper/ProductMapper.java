@@ -26,4 +26,5 @@ public interface ProductMapper {
     List<GetProduct> relatedProduct(String category);
     void addReview(Review review);
     List<Review> allReview(int productId);
+    void deleteReview(int reviewId);
 }

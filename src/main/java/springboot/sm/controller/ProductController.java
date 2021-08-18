@@ -76,13 +76,16 @@ public class ProductController {
     }
 
     @GetMapping("/product/{productId}")
-    public String detailProduct(@PathVariable int productId, Model model){
+    public String detailProduct(@PathVariable int productId, Model model, HttpServletRequest request){
         Product product = productService.findProduct(productId);
         model.addAttribute("product",product);
         List<Product> products = productService.relatedProduct(product.getCategory());
         model.addAttribute("relateProduct",products);
         List<Review> reviews = productService.allReview(productId);
         model.addAttribute("reviews",reviews);
+        HttpSession session = request.getSession();
+        Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
+        model.addAttribute("loginMember",loginMember);
         return "products/detailProduct";
     }
 
@@ -165,5 +168,9 @@ public class ProductController {
         return "redirect:/product/{productId}";
     }
 
-
+    @GetMapping("/review/delete/{reviewId}")
+    public String deleteReview(@PathVariable int reviewId){
+        productService.deleteReview(reviewId);
+        return "redirect:/product/{productId}";
+    }
 }

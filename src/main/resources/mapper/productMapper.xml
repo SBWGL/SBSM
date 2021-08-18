@@ -60,4 +60,8 @@
         select * from review where productId=#{productId}
     </select>
 
+    <update id="deleteReview" parameterType="int">
+        delete from review where reviewId=#{reviewId}
+    </update>
+
 </mapper>
