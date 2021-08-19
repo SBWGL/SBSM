@@ -26,7 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")// 적용 url 패턴
                 .excludePathPatterns("/", "/signUp", "/login", "/logout",
                         "/css/**", "/*.ico", "/*.js", "/images/**", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin",
-                        "products/OUTER", "products/TOP", "products/KINT", "products/SHIRT", "products/PANTS", "products/SHOES", "products/ACC"
+                        "products/OUTER", "products/TOP", "products/KINT", "products/SHIRT", "products/PANTS", "products/SHOES", "products/ACC", "products/find/**"
                 );
 
 
@@ -36,7 +36,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/", "/signUp", "/login", "/logout",
                         "/css/**", "/*.ico", "/*.js", "/images/**", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin",
                         "/products/OUTER", "/products/TOP", "/products/KINT", "/products/SHIRT", "/products/PANTS", "/products/SHOES", "/products/ACC",
-                        "/product"
+                        "/product", "/products/find/**"
                 );
 
         registry.addInterceptor(new UserIntercepter())
@@ -45,7 +45,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/", "/signUp", "/login", "/logout",
                         "/css/**", "/*.ico", "/*.js", "/images/**", "/image/**", "/js/**", "/error","/memberIdCheck","/mailCheck","/errorAdmin",
                         "/products/OUTER", "/products/TOP", "/products/KINT", "/products/SHIRT", "/products/PANTS", "/products/SHOES", "/products/ACC",
-                        "/product/*", "/basket", "/myPage", "/changePW", "/members/changePW", "/pwCheck","/basket/**"
+                        "/product/*", "/basket", "/myPage", "/changePW", "/members/changePW", "/pwCheck","/basket/**", "/products/find/**"
 
                 );
 

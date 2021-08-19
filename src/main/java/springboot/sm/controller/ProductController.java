@@ -38,17 +38,24 @@ public class ProductController {
     FileStore fileStore;
 
     @GetMapping("/products/{category}")
-    public String productsByCategory(Model model, @ModelAttribute("cri") Criteria cri, @PathVariable String category){
+    public String productsByCategory(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember,
+            Model model, @ModelAttribute("cri") Criteria cri, @PathVariable String category){
         List<Product> listPaging = productService.getListPaging(cri, category);// 페이징된 상품 전체 가져오기
         model.addAttribute("products",listPaging);
         int total = productService.getTotal(category);
         PageMake pageMake = new PageMake(cri,total);
         model.addAttribute("pageMake",pageMake);
-        return "products/products";
+        if(loginMember == null) {
+            return "products/products";
+        }else{
+            model.addAttribute("member", loginMember);
+            return "products/loginProducts";
+        }
     }
 
     @GetMapping("/products/{category}/{page}")
-    public String paging(Model model, @PathVariable String category, @PathVariable int page){
+    public String paging(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember,
+            Model model, @PathVariable String category, @PathVariable int page){
         Criteria cri = new Criteria();
         cri.setPageNum(page);
 
@@ -57,22 +64,39 @@ public class ProductController {
         int total = productService.getTotal(category);
         PageMake pageMake = new PageMake(cri,total);
         model.addAttribute("pageMake",pageMake);
-        return "products/products";
+        if(loginMember == null) {
+            return "products/products";
+        }else{
+            model.addAttribute("member", loginMember);
+            return "products/loginProducts";
+        }
     }
 
     @GetMapping("/products")
-    public String products(Model model){
+    public String products(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember,
+                           Model model){
         List<Product> products = productService.products();
         model.addAttribute("products",products);
-        return "products/products";
+        if(loginMember == null) {
+            return "products/products";
+        }else{
+            model.addAttribute("member", loginMember);
+            return "products/loginProducts";
+        }
     }
 
     @GetMapping("/products/find/{keyword}")
-    public String findProducts(@PathVariable String keyword, Model model){
+    public String findProducts(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember,
+            @PathVariable String keyword, Model model){
         log.info("keyword={}",keyword);
         List<Product> productByKeyword = productService.findProductByKeyword(keyword);
         model.addAttribute("products",productByKeyword);
-        return "products/searchProducts";
+        if(loginMember == null) {
+            return "products/searchProducts";
+        }else{
+            model.addAttribute("member", loginMember);
+            return "products/loginSearchProducts";
+        }
     }
 
     @GetMapping("/product/{productId}")
@@ -86,7 +110,12 @@ public class ProductController {
         HttpSession session = request.getSession();
         Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
         model.addAttribute("loginMember",loginMember);
-        return "products/detailProduct";
+        if(loginMember == null) {
+            return "products/detailProduct";
+        }else{
+            model.addAttribute("member", loginMember);
+            return "products/loginDetailProduct";
+        }
     }
 
     @PostMapping("/product/{productId}")
@@ -105,7 +134,12 @@ public class ProductController {
         String time = Timestamp.valueOf(LocalDateTime.now()).toString();
         review.setCreateDate(time.substring(0,16));
         productService.addReview(review);
-        return "redirect:/products/detailProduct";
+        if(loginMember == null) {
+            return "redirect:/products/detailProduct";
+        }else{
+            model.addAttribute("member", loginMember);
+            return "redirect:/products/loginDetailProduct";
+        }
     }
 
     @GetMapping("/addProduct")

@@ -42,17 +42,18 @@
 <div>
     <div>
         <div>
-          <span class="py-2 d-none d-md-inline-block"
-          style="margin-left: 1200px; color: #000;"
-          th:onclick="|location.href='@{/login}'|"
-          href="#"><a href="#" class="click">로그인</a></span>
+            <span class="py-2 d-none d-md-inline-block"
+                  style="margin-left: 1200px; color: #000;"
+                  th:onclick="|location.href='@{/basket}'|"
+                  href="#"><a href="#" class="click">장바구니</a></span>
             <span class="py-2 d-none d-md-inline-block"
                   style="margin-left: 8px; color: #000;"
-                  th:onclick="|location.href='@{/signUp}'|"
-                  href="#"><a href="#" class="click">회원가입</a></span>
+                  th:onclick="|location.href='@{/myPage}'|"
+                  href="#"><a href="#" class="click">마이페이지</a></span>
             <span class="py-2 d-none d-md-inline-block"
                   style="margin-left: 7.5px; color: #000;"
-                  href="#"><a href="#" class="click">고객센터</a></span>
+                  th:onclick="|location.href='@{/logout}'|"
+                  href="#"><a href="#" class="click">로그아웃</a></span>
         </div>
         <a th:onclick="|location.href='@{/}'|">
             <img src="/image/5.png" style="display: block; height: 60px; margin-left: 625.5px;">
