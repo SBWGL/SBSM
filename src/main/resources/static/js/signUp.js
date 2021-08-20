@@ -1,3 +1,78 @@
+var idCheck = false;            // 아이디
+var idckCheck = false;            // 아이디 중복 검사
+var pwCheck = false;            // 비번
+var pwckCheck = false;            // 비번 확인
+var pwckcorCheck = false;        // 비번 확인 일치 확인
+var nameCheck = false;            // 이름
+var mailCheck = false;            // 이메일
+var mailnumCheck = false;        // 이메일 인증번호 확인
+var addressCheck = false         // 주소
+
+$(".join_button").attr("type", "button");
+
+$(document).ready(function(){
+
+    $(".join_button").click(function(){
+        /* 입력값 변수 */
+        var id = $('#loginId').val();                 // id 입력란
+        var pw = $('#password').val();                // 비밀번호 입력란
+        var name = $('#name').val();            // 이름 입력란
+        var mail = $('#email').val();            // 이메일 입력란
+        var addr = $('#postcode').val();        // 주소 입력란
+
+        /* 아이디 유효성검사 */
+        if(id == ""){
+            $('.final_id_ck').css('display','block');
+            idCheck = false;
+        }else{
+            $('.final_id_ck').css('display', 'none');
+            idCheck = true;
+        }
+
+        /* 비밀번호 유효성 검사 */
+        if(pw == ""){
+            $('.final_pw_ck').css('display','block');
+            pwCheck = false;
+        }else{
+            $('.final_pw_ck').css('display', 'none');
+            pwCheck = true;
+        }
+
+        /* 이름 유효성 검사 */
+        if(name == ""){
+            $('.final_name_ck').css('display','block');
+            nameCheck = false;
+        }else{
+            $('.final_name_ck').css('display', 'none');
+            nameCheck = true;
+        }
+
+        /* 이메일 유효성 검사 */
+        if(mail == ""){
+            $('.final_mail_ck').css('display','block');
+            mailCheck = false;
+        }else{
+            $('.final_mail_ck').css('display', 'none');
+            mailCheck = true;
+        }
+
+        /* 주소 유효성 검사 */
+        if(addr == ""){
+            $('.final_addr_ck').css('display','block');
+            addressCheck = false;
+        }else{
+            $('.final_addr_ck').css('display', 'none');
+            addressCheck = true;
+        }
+
+        if(idCheck&&idckCheck&&pwCheck&&nameCheck&&mailCheck&&addressCheck ){
+            $(".join_form").attr("action", "/signUp");
+            $(".join_form").submit();
+        }
+        return false;
+    });
+})
+
 //아이디 중복검사
 $('#loginId').on("propertychange change keyup paste input", function(){
 	var memberId = $('#loginId').val();	// #loginid 에 입력되는 값
@@ -11,9 +86,11 @@ $('#loginId').on("propertychange change keyup paste input", function(){
             if(result != 'fail'){
                 $('.possibleId').css("display","inline-block");
                 $('.existId').css("display", "none");
+                idckCheck = true;
             } else {
                 $('.existId').css("display","inline-block");
                 $('.possibleId').css("display", "none");
+                idckCheck = false;
             }
         }// success 종료
 	}); // ajax 종료
@@ -25,6 +102,15 @@ $(".mailCheckButton").click(function(){
     var email = $("#email").val(); //입력한 이메일
     var checkInput = $(".mailCheckInput"); // 인증번호 입력란
     var checkBox = $(".mailCheckInputBox"); // 인증번호 입력란 박스
+    var warnMsg = $(".mail_input_box_warn");    // 이메일 입력 경고글
+    if(mailFormCheck(email)){
+        warnMsg.html("이메일이 전송 되었습니다. 이메일을 확인해주세요.");
+        warnMsg.css("color", "green");
+    } else {
+        warnMsg.html("올바르지 못한 이메일 형식입니다.");
+        warnMsg.css("color", "red");
+        return false;
+    }
     $.ajax({
         type:"GET",
         url:"mailCheck?email=" + email,
@@ -54,5 +140,9 @@ $(".mailCheckInput").blur(function(){
     }
 });
 
+function mailFormCheck(email){
+    var form = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return form.test(email);
+}
 
 

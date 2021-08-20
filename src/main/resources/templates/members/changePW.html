@@ -2,16 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <link th:href="@{/css/bootstrap.min.css}"
-          href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/product/">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link   th:href="@{/css/bootstrap.min.css}"
+            href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <style>
-     .container {
-     max-width: 560px;
-     }
-     .field-error {
-     border-color: #dc3545;
-     color: #dc3545;
-     }
+
      .errorPw{
         color : red;
         display : none;
@@ -20,34 +21,170 @@
         color : green;
         display : none
      }
+  .click{
+    color: #9EA4AA;
+    text-decoration: none;
+  }
+
+  .click:hover {
+    color: black;
+    text-decoration-color: black;
+    text-decoration-thickness: 2.5px;
+  }
+  .link-secondary:hover{
+    text-decoration: none;
+  }
+
+  .focus:focus {
+    outline: none;
+  }
  </style>
 </head>
 <body>
+
+<div>
+    <div>
+        <div>
+            <span class="py-2 d-none d-md-inline-block"
+                  style="margin-left: 1200px; color: #000;"
+                  th:onclick="|location.href='@{/basket}'|"
+                  href="#"><a href="#" class="click">장바구니</a></span>
+            <span class="py-2 d-none d-md-inline-block"
+                  style="margin-left: 8px; color: #000;"
+                  th:onclick="|location.href='@{/myPage}'|"
+                  href="#"><a href="#" class="click">마이페이지</a></span>
+            <span class="py-2 d-none d-md-inline-block"
+                  style="margin-left: 7.5px; color: #000;"
+                  th:onclick="|location.href='@{/logout}'|"
+                  href="#"><a href="#" class="click">로그아웃</a></span>
+        </div>
+        <a th:onclick="|location.href='@{/}'|">
+            <img src="/image/5.png" style="display: block; height: 60px; margin-left: 625.5px;">
+        </a>
+    </div>
+</div>
+
+<header class="site-header sticky-top py-1" style="background-color: #FFFFFF; border-width: 0px 0px 2px 0px; border-style: solid; border-color: black">
+    <nav class="container d-flex flex-column flex-md-row justify-content-between navbar navbar-light">
+       <span class="py-2 d-none d-md-inline-block"
+             style="color: #000;"
+             th:onclick="|location.href='@{/products/OUTER}'|"
+       ><a href="#" class="click">OUTER</a></span>
+        <span class="py-2 d-none d-md-inline-block"
+              style="color: #000;"
+              th:onclick="|location.href='@{/products/TOP}'|"
+        ><a href="#" class="click">TOP</a></span>
+        <span class="py-2 d-none d-md-inline-block"
+              style="color: #000;"
+              th:onclick="|location.href='@{/products/KINT}'|"
+        ><a href="#" class="click">KINT</a></span>
+        <span class="py-2 d-none d-md-inline-block"
+              style="color: #000;"
+              th:onclick="|location.href='@{/products/SHIRT}'|"
+        ><a href="#" class="click">SHIRT</a></span>
+        <span class="py-2 d-none d-md-inline-block"
+              style="color: #000;"
+              th:onclick="|location.href='@{/products/PANTS}'|"
+        ><a href="#" class="click">PANTS</a></span>
+        <span class="py-2 d-none d-md-inline-block"
+              style="color: #000;"
+              th:onclick="|location.href='@{/products/SHOES}'|"
+        ><a href="#" class="click">SHOES</a></span>
+        <span class="py-2 d-none d-md-inline-block"
+              style="color: #000;"
+              th:onclick="|location.href='@{/products/ACC}'|"
+        ><a href="#" class="click">ACC</a></span>
+        <form method="get">
+            <input name="keyword" id="keyword" placeholder=""
+                   class="focus"
+                   onfocus="this.placeholder=''"
+                   onblur="this.placeholder=''"
+                   style="border: solid; border-width: 1px; border-right:0px; border-top:0px; border-left:0px; color: #9EA4AA;"
+            >
+            <button class="btn" type="button" id="find">
+                <img src="/image/6.png" style="width: 35px;">
+            </button>
+        </form>
+    </nav>
+</header>
+
 <div class="container">
     <div class="py-5 text-center">
         <h2>비밀번호 변경</h2>
     </div>
     <form action="" th:action th:object="${pwUpdate}" method="post">
         <div>
-            <label for="password">현재 비밀번호</label>
-            <input type="password" id="password" th:field="*{password}" class="form-control">
-            <span class="errorPw">현재 비밀번호가 틀렸습니다.</span>
-            <span class="agreePw">현재 비밀번호가 맞습니다.</span>
+            <label style="margin-left: 330px;" for="password">현재 비밀번호</label>
+            <input style="width: 460px; height: 45px; margin-left: 330px;" type="password" id="password" th:field="*{password}" class="form-control">
+            <span style="margin-left: 330px;" class="errorPw">현재 비밀번호가 틀렸습니다.</span>
+            <span style="margin-left: 330px;" class="agreePw">현재 비밀번호가 맞습니다.</span>
         </div>
         <div>
-            <label for="changePw">새 비밀번호</label>
-            <input type="password" id="changePw" th:field="*{changePw}" class="form-control"
+            <label style="margin-left: 330px;" for="changePw">새 비밀번호</label>
+            <input style="width: 460px; height: 45px; margin-left: 330px; " type="password" id="changePw" th:field="*{changePw}" class="form-control"
                    th:errorclass="field-error">
         </div>
         <div>
-            <label for="changePwCheck">새 비밀번호 확인</label>
-            <input type="password" id="changePwCheck" class="form-control">
+            <label style="margin-left: 330px;" for="changePwCheck">새 비밀번호 확인</label>
+            <input style="width: 460px; height: 45px; margin-left: 330px; " type="password" id="changePwCheck" class="form-control">
         </div>
+        <hr class="my-4" style="width: 460px; margin-left: 330px;">
         <div class="col">
-            <button class="w-100 btn btn-primary btn-lg" type="submit">변경</button>
+            <button  style="margin-left: 315px; color: white; border: none; border-radius: 0.2em; background-color: black; width: 460px; height: 45px;" type="submit">변경</button>
         </div>
     </form>
 </div> <!-- /container -->
+
+<hr class="my-4" style="color: black;">
+<footer class="container py-5">
+    <div class="row">
+        <div class="col-2 col-md">
+            <font class="d-block mb-3" style="font-size: 25px; color: black;">쇼핑몰 프로젝트</font>
+            <font class="d-block mb-3 text-muted">이정환, 공대표</font>
+            <small class="d-block mb-3 text-muted">&copy;2021.08.09 ~ 2021.08.27</small>
+        </div>
+        <div class="col-6 col-md">
+            <h5>프로젝트 정보</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="link-secondary" href="#">Spring Boot</a></li>
+                <li><a class="link-secondary" href="#">thymeleaf</a></li>
+                <li><a class="link-secondary" href="#">mySQL</a></li>
+                <li><a class="link-secondary" href="#">mybatis</a></li>
+                <li><a class="link-secondary" href="#">Bootstrap</a></li>
+                <li><a class="link-secondary" href="#">jQuary</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>회원 페이지</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="link-secondary" href="#">회원가입</a></li>
+                <li><a class="link-secondary" href="#">이메일 인증</a></li>
+                <li><a class="link-secondary" href="#">주소 api</a></li>
+                <li><a class="link-secondary" href="#">비밀번호 암호화</a></li>
+                <li><a class="link-secondary" href="#">로그인</a></li>
+                <li><a class="link-secondary" href="#">마이페이지</a></li>
+                <li><a class="link-secondary" href="#">비밀번호 변경</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>장바구니 페이지</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="link-secondary" href="#">장바구니 등록</a></li>
+                <li><a class="link-secondary" href="#">장바구니 개별 삭제</a></li>
+                <li><a class="link-secondary" href="#">장바구니 전체 삭제</a></li>
+                <li><a class="link-secondary" href="#">주문자 정보</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>그 외</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="link-secondary" href="#">Interceptor를 통해 미로그인시 이동 제한</a></li>
+                <li><a class="link-secondary" href="#">회원가입 및 장바구니 등록 시 Validation 등록</a></li>
+                <li><a class="link-secondary" href="#">에러 처리</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
@@ -71,5 +208,38 @@ $('#password').on("propertychange change keyup paste input", function(){
         }// success 종료
 	}); // ajax 종료
 });
+</script>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    $('.carousel').carousel({
+        interval: 1500
+    })
+</script>
+<script th:inline="javascript">
+    $("#find").click(function(){
+        let keyword = $("#keyword").val();
+        console.log(keyword);
+        $.ajax({
+            type:"POST",
+            url:"/products/find/"+keyword,
+            data:JSON.stringify(keyword),
+            contentType:"application/json;charset=utf-8",
+            dataType:"json",
+            success:function(){
+                console.log("성공")
+                location.href="/products";
+            },
+            error:function(error){
+                location.href="/products/find/"+keyword;
+            }
+        });
+    });
 </script>
 </html>

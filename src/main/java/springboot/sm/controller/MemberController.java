@@ -57,7 +57,7 @@ public class MemberController {
         Member loginMember = memberService.login(loginform.getLoginId(), loginform.getPassword());
 
         if (loginMember == null) {
-            bindingResult.reject("loginFail", "loginId OR password ERROR");
+            bindingResult.reject("loginFail", "아이디 또는 비밀번호를 잘못 입력했습니다.");
             return "members/loginForm";
         } /** DP_ 아이디, 비밀번호 오류일 때 예외상황 **/
 

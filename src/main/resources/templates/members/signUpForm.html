@@ -75,6 +75,31 @@
     outline: none;
   }
 
+    .final_id_ck{
+        display: none;
+        color: red;
+    }
+    .final_pw_ck{
+        display: none;
+        color: red;
+    }
+    .final_pwck_ck{
+        display: none;
+        color: red;
+    }
+    .final_name_ck{
+        display: none;
+        color: red;
+    }
+    .final_mail_ck{
+        display: none;
+        color: red;
+    }
+    .final_addr_ck{
+        display: none;
+        color: red;
+    }
+
 </style>
 </head>
 <body>
@@ -147,7 +172,7 @@
     <div class="py-5 text-center">
         <h2>회원 가입</h2>
     </div>
-    <form action="" th:action th:object="${member}" method="post">
+    <form class="join_form" action="" th:action th:object="${member}" method="post">
         <!-- object : Member가 아닌 member로 해야 함 Member클래스를 member로 선언하고 받았으니 -->
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error" th:each="err : ${#fields.globalErrors()}"
@@ -164,6 +189,7 @@
                 <div class="field-error" th:errors="*{loginId}"/>
                 <span style="margin-left: 330px;" class="possibleId">사용 가능한 아이디입니다.</span>
                 <span style="margin-left: 330px;" class="existId">아이디가 이미 존재합니다.</span>
+                <span style="margin-left: 330px;" class="final_id_ck">아이디를 입력해주세요.</span>
             </div>
         </div>
         <div>
@@ -174,6 +200,7 @@
                    type="password" id="password" th:field="*{password}" class="form-control"
                    th:errorclass="field-error">
             <div class="field-error" th:errors="*{password}"/>
+            <span style="margin-left: 330px;" class="final_pw_ck">비밀번호를 입력해주세요.</span>
         </div>
         <div>
             <label for="name" style="margin-left: 330px;">이름</label>
@@ -183,6 +210,7 @@
                    type="text" id="name" th:field="*{name}" class="form-control"
                    th:errorclass="field-error">
             <div class="field-error" th:errors="*{name}"/>
+            <span style="margin-left: 330px;" class="final_name_ck">이름을 입력해주세요.</span>
         </div>
         <div>
             <label for="email" style="margin-left: 330px;">이메일</label>
@@ -192,8 +220,10 @@
                    type="text" id="email" th:field="*{email}"
                    class="form-control"
                    th:errorclass="field-error">
+            <span style="margin-left: 330px;" class="final_mail_ck">이메일을 입력해주세요.</span>
+            <span style="margin-left: 330px;" class="mail_input_box_warn"></span>
             <div class="field-error" th:errors="*{email}"/>
-            <label style="margin-left: 330px;">인증번호</label>
+            <div><label style="margin-left: 330px;">인증번호</label></div>
             <div class="mailCheck">
                 <div class="mailCheckInputBox" id="mailCheckInputFalse" style="width: 460px; height: 45px; margin-left: 330px; display: inline-block;">
                     <input class="form-control mailCheckInput" disabled="disabled">
@@ -213,6 +243,7 @@
                        th:errorclass="field-error"
                        placeholder="우편번호" readonly="readonly" style="width: 350px; height: 45px; margin-left: 330px;">
                 <div class="field-error" th:errors="*{postcode}"/>
+
             </div>
             <div class="form-comtrol addressButton" style="width: 180px; display: inline-block;" onclick="findAddress()">
                 <button style="color: white; border: none; border-radius: 0.2em; background-color: black; width: 100px; height: 45px; margin-left: 5px;" type="button">주소검색</button>
@@ -232,6 +263,7 @@
                        style="width: 460px; height: 45px; margin-left: 330px;"
                        placeholder="상세주소">
                 <div class="field-error" th:errors="*{detailAddress}"/>
+                <span style="margin-left: 330px;" class="final_addr_ck">주소를 입력해주세요.</span>
             </div>
 
             <div class="field-error" th:errors="*{role}"/>
@@ -240,7 +272,7 @@
         <hr class="my-4" style="width: 460px; margin-left: 330px;">
         <div class="row">
             <div class="col">
-                <button style="color: white; border: none; border-radius: 0.2em; background-color: black; width: 460px; height: 45px; margin-left: 332px;" type="submit">회원 가입</button>
+                <button class="join_button" style="color: white; border: none; border-radius: 0.2em; background-color: black; width: 460px; height: 45px; margin-left: 332px;" type="submit">회원 가입</button>
             </div>
         </div>
     </form>
